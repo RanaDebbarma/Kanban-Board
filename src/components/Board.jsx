@@ -1,12 +1,41 @@
-export default function Board() {
-    return (
-        <div 
-            style={{
-                height: '100dvh',
-                backgroundColor: 'darkslategrey',
-            }}
-            >
+import styles from "./Board.module.css";
+import Column from "./Column";
 
+export default function Board() {
+  return (
+    <div className={styles.boardBody}>
+      <nav className={styles.title}>Kan-ban baord</nav>
+
+      <div className={styles.columnWrapper}>
+        <div className={styles.input}>
+          <label className={styles.heading}>Input</label>
+
+          <div className={styles.columns}>
+            <Column color="hsl(0, 50%, 85%)" 
+              title="backlog"
+            />
+            <Column color="hsl(0, 50%, 85%)" />
+          </div>
         </div>
-    )
+        <div className={styles.wip}>
+          <label className={styles.heading}>In progress</label>
+          <div className={styles.columns}>
+
+            <Column color="hsl(208, 50%, 85%)" 
+              title="doing"
+            />
+          </div>
+        </div>
+        <div className={styles.output}>
+          <label className={styles.heading}>Output</label>
+          <div className={styles.columns}>
+
+            <Column color="hsl(140, 50%, 85%)" 
+              title="done"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

@@ -1,0 +1,48 @@
+.boardBody {
+  box-sizing: border-box;
+  background-color: hsl(0, 0%, 90%);
+  height: 100dvh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.title {
+  color: black;
+  height: 35px;
+}
+
+.columnWrapper {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+}
+
+.input, .wip, .output {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.heading {
+    padding-left: 12px ;
+    padding-bottom: 12px;
+}
+
+.columns {
+    display: flex;
+    gap: 4px;
+}
+/* 
+.input {
+    background-color: hsl(0, 50%, 85%);
+}
+
+.wip {
+    background-color: hsl(208, 50%, 85%);
+}
+
+.output {
+  background-color: hsl(140, 50%, 85%);
+} */

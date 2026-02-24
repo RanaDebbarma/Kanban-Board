@@ -1,0 +1,16 @@
+.column {
+    width: 360px;
+    min-height: 50px;
+
+    border: 2px solid grey;
+    border-radius: 16px;
+
+    padding: 12px;
+
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.heading {
+    text-align: center;
+}
