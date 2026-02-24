@@ -1,13 +1,15 @@
-import Board from './components/Board'
-import './App.css'
+import Board from "./components/Board";
+import BoardContextProvider from "./context/BoardContextProvider";
+import "./App.css";
 
 function App() {
-
   return (
     <>
-      <Board/>
+      <BoardContextProvider>
+        <Board />
+      </BoardContextProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
