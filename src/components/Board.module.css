@@ -1,6 +1,6 @@
 .boardBody {
   box-sizing: border-box;
-  background-color: hsl(0, 0%, 70%);
+  background-color: hsl(0, 0%, 80%);
   height: 100dvh;
   padding: 20px;
   display: flex;
@@ -9,49 +9,30 @@
 }
 
 .title {
-  color: black;
+  color: hsl(0, 0%, 0%, 0.7);
   display: flex;
   align-items: center;
   font-size: xx-large;
   height: 60px;
 }
 
-.columnWrapper {
+.stages {
   flex: 1;
   width: fit-content;
   display: flex;
   gap: 20px;
 }
 
-.input,
-.wip,
-.output {
+.heading {
+  color: hsl(0, 0%, 0%, 0.7);
+  font-size: medium;
+  font-weight: 500;
+  padding-left: 12px;
+  padding-bottom: 8px;
+}
+
+.stage {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
-
-.heading {
-  font-size: larger;
-  font-weight: 500;
-  padding-left: 12px;
-  padding-bottom: 12px;
-}
-
-.columns {
-  display: flex;
-  align-items: flex-start; /**/
-  gap: 4px;
-}
-/* 
-.input {
-    background-color: hsl(0, 50%, 85%);
-}
-
-.wip {
-    background-color: hsl(208, 50%, 85%);
-}
-
-.output {
-  background-color: hsl(140, 50%, 85%);
-} */

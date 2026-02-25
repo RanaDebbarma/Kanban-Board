@@ -13,8 +13,9 @@
 }
 
 .heading {
-    font-size: x-large;
+    color: hsl(0, 0%, 0%, 0.8);
+    font-size: larger;
     font-weight: 500;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     text-align: center;
 }
