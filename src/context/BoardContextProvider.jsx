@@ -1,7 +1,13 @@
 import { BoardContext } from "./BoardContext";
 import { useReducer } from "react";
 
-const initialState = [];
+const initialState = {
+    input: [],
+    wip: [],
+    output: [],
+    column: [],
+    cards: [],
+};
 
 function reducer(state, action) {
     switch(action.type) {

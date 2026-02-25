@@ -1,6 +1,6 @@
 .boardBody {
   box-sizing: border-box;
-  background-color: hsl(0, 0%, 90%);
+  background-color: hsl(0, 0%, 70%);
   height: 100dvh;
   padding: 20px;
   display: flex;
@@ -10,29 +10,38 @@
 
 .title {
   color: black;
-  height: 35px;
+  display: flex;
+  align-items: center;
+  font-size: xx-large;
+  height: 60px;
 }
 
 .columnWrapper {
   flex: 1;
+  width: fit-content;
   display: flex;
   gap: 20px;
 }
 
-.input, .wip, .output {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+.input,
+.wip,
+.output {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .heading {
-    padding-left: 12px ;
-    padding-bottom: 12px;
+  font-size: larger;
+  font-weight: 500;
+  padding-left: 12px;
+  padding-bottom: 12px;
 }
 
 .columns {
-    display: flex;
-    gap: 4px;
+  display: flex;
+  align-items: flex-start; /**/
+  gap: 4px;
 }
 /* 
 .input {

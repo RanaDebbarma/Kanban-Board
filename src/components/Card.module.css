@@ -1,0 +1,20 @@
+.cardBody {
+    min-height: 100px;
+    width: 100%;
+    background-color: beige;
+    border: 2px solid grey;
+    border-radius: 4px;
+
+    box-sizing: border-box;
+    padding: 16px;
+}
+
+.title {
+    font-size: x-large;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.description {
+    
+}

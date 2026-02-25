@@ -1,5 +1,6 @@
 import styles from "./Board.module.css";
 import Column from "./Column";
+import Card from "./Card";
 
 export default function Board() {
   return (
@@ -13,8 +14,11 @@ export default function Board() {
           <div className={styles.columns}>
             <Column color="hsl(0, 50%, 85%)" 
               title="backlog"
+              cards={<Card title ='test'/>}
             />
-            <Column color="hsl(0, 50%, 85%)" />
+            <Column color="hsl(0, 50%, 85%)" 
+              title="todo"
+            />
           </div>
         </div>
         <div className={styles.wip}>

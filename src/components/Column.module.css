@@ -1,9 +1,10 @@
 .column {
     width: 360px;
-    min-height: 50px;
+    min-height: 100px;
+    height: auto;
 
     border: 2px solid grey;
-    border-radius: 16px;
+    border-radius: 8px;
 
     padding: 12px;
 
@@ -12,5 +13,8 @@
 }
 
 .heading {
+    font-size: x-large;
+    font-weight: 500;
+    margin-bottom: 16px;
     text-align: center;
 }
