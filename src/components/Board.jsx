@@ -8,11 +8,19 @@ export default function Board() {
   function renderStages() {
     return state.stageOrder.map((stageId) => {
       const stage = state.stages[stageId];
+      const columns = state.columns;
+      const cards = state.cards;
+
       return (
         <div key={stageId} className={styles.stage}>
           <label className={styles.heading}>{stage.title}</label>
           <div className={styles.stageBody}>
-            <Stage key={stageId} stage={stage} />
+            <Stage
+              key={stageId}
+              stage={stage}
+              columns={columns}
+              cards={cards}
+            />
           </div>
         </div>
       );

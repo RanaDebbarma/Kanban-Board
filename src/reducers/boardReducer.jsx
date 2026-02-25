@@ -1,4 +1,5 @@
 export default function boardReducer(state, action) {
+  console.log(state)
   switch (action.type) {
     case "ADD_COLUMN": {
       const { stageId, title } = action.payload;

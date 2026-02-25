@@ -32,12 +32,6 @@ const initialState = {
       cardIds: ["test"],
       isDefault: true,
     },
-    // todo: {
-    //   id: "todo",
-    //   title: "Todo",
-    //   stageId: "input",
-    //   cardIds: [],
-    // },
     doing: {
       id: "doing",
       title: "Doing",

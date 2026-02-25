@@ -2,13 +2,20 @@ import useBoard from "../hooks/useBoard";
 import Column from "./Column";
 import styles from "./Stage.module.css";
 
-export default function Stage({ stage }) {
-  const { state, dispatch } = useBoard();
+export default function Stage({ stage, columns, cards }) {
+  const { dispatch } = useBoard();
 
   function renderColumns() {
     return stage.columnIds.map((colId) => {
-      const column = state.columns[colId];
-      return <Column key={colId} column={column}></Column>;
+      const column = columns[colId];
+      return (
+        <Column
+          key={colId}
+          stage={stage}
+          column={column}
+          cards={cards}
+        ></Column>
+      );
     });
   }
 
@@ -17,10 +24,10 @@ export default function Stage({ stage }) {
       type: "ADD_COLUMN",
       payload: {
         stageId: stage.id,
-        title: 'New Column',
-      }
-    })
-  }
+        title: "New Column",
+      },
+    });
+  };
 
   return (
     <>

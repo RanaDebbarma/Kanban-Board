@@ -2,12 +2,12 @@ import useBoard from "../hooks/useBoard";
 import Card from "./Card";
 import styles from "./Column.module.css";
 
-export default function Column({ column }) {
-  const { state, dispatch } = useBoard();
+export default function Column({  stage, column, cards }) {
+  const { dispatch } = useBoard();
 
   function renderCards() {
     return column.cardIds.map((cardId) => {
-      const card = state.cards[cardId];
+      const card = cards[cardId];
       return <Card key={cardId} card={card} />;
     });
   }
@@ -23,7 +23,7 @@ export default function Column({ column }) {
     <div
       className={styles.column}
       style={{
-        backgroundColor: state.stages[column.stageId].color,
+        backgroundColor: stage.color,
       }}
     >
       <div className={styles.heading}>
@@ -35,7 +35,7 @@ export default function Column({ column }) {
             }),
           }}
         >
-          x
+          ✕
         </button>
         {column.title}
       </div>

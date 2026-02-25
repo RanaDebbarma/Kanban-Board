@@ -3,7 +3,7 @@
     min-height: 100px;
     height: auto;
 
-    border: 2px solid grey;
+    border: 2px solid rgba(128, 128, 128, 0.7);
     border-radius: 8px;
 
     padding: 12px;
@@ -27,7 +27,7 @@
 
     background-color: transparent;
     color: hsla(0, 0%, 0%, 0.5);
-    font-size: large;
+    font-size: medium;
 
     display: flex;
     justify-content: center;
