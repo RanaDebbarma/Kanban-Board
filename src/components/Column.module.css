@@ -13,12 +13,30 @@
 }
 
 .heading {
+    text-align: center;
     position: relative;
+    margin-bottom: 12px;
+}
+
+.heading input, .title {
+    background-color: transparent;
     color: hsl(0, 0%, 0%, 0.8);
+    outline: none;
+
     font-size: larger;
     font-weight: 500;
-    margin-bottom: 12px;
     text-align: center;
+    line-height: 1.4;
+
+    padding: 0;
+    margin: 0;
+    /* box-sizing: border-box; */
+    /* field-sizing: content; */
+}
+
+.heading input {
+    border: 1px solid grey;
+    line-height: 1.35;
 }
 
 .heading button {

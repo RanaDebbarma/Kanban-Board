@@ -1,8 +1,11 @@
+import { useState } from "react";
 import useBoard from "../hooks/useBoard";
 import Card from "./Card";
 import styles from "./Column.module.css";
 
-export default function Column({  stage, column, cards }) {
+export default function Column({ stage, column, cards }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [title, setTitle] = useState(column.title);
   const { dispatch } = useBoard();
 
   function renderCards() {
@@ -17,6 +20,30 @@ export default function Column({  stage, column, cards }) {
       type: "REMOVE_COLUMN",
       payload: { columnId: column.id },
     });
+  };
+
+  const handleBlur = () => {
+    saveTitle();
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      saveTitle();
+    }
+
+    if (e.key === "Escape") {
+      setTitle(column.title);
+      setIsEditing(false);
+    }
+  };
+
+  const saveTitle = () => {
+    if (title.trim() === "") return;
+    dispatch({
+      type: "UPDATE_COLUMN_TITLE",
+      payload: { columnId: column.id, newTitle: title },
+    });
+    setIsEditing(false);
   };
 
   return (
@@ -37,7 +64,23 @@ export default function Column({  stage, column, cards }) {
         >
           ✕
         </button>
-        {column.title}
+        {isEditing ? (
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            onBlur={handleBlur}
+            onKeyDown={handleKeyDown}
+            autoFocus
+          />
+        ) : (
+          <div
+            className={styles.title}
+            onDoubleClick={() => setIsEditing(true)}
+          >
+            {column.title}
+          </div>
+        )}
       </div>
       <div className={styles.cards}>{renderCards()}</div>
     </div>

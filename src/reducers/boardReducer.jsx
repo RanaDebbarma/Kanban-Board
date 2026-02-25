@@ -1,5 +1,4 @@
 export default function boardReducer(state, action) {
-  console.log(state)
   switch (action.type) {
     case "ADD_COLUMN": {
       const { stageId, title } = action.payload;
@@ -53,6 +52,21 @@ export default function boardReducer(state, action) {
               (id) => id !== columnId,
             ),
           },
+        },
+      };
+    }
+
+    case "UPDATE_COLUMN_TITLE": {
+      const { columnId, newTitle } = action.payload;
+      return {
+        ...state,
+
+        columns: {
+          ...state.columns,
+          [columnId]: {
+            ...state.columns[columnId],
+            title: newTitle,
+          }
         },
       };
     }
