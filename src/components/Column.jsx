@@ -3,7 +3,7 @@ import Card from "./Card";
 import styles from "./Column.module.css";
 
 export default function Column({ column }) {
-  const { state } = useBoard();
+  const { state, dispatch } = useBoard();
 
   function renderCards() {
     return column.cardIds.map((cardId) => {
@@ -13,8 +13,11 @@ export default function Column({ column }) {
   }
 
   const deleteColumn = () => {
-
-  }
+    dispatch({
+      type: "REMOVE_COLUMN",
+      payload: { columnId: column.id },
+    });
+  };
 
   return (
     <div
@@ -24,7 +27,16 @@ export default function Column({ column }) {
       }}
     >
       <div className={styles.heading}>
-        <button onClick={deleteColumn}> - </button>
+        <button
+          onClick={deleteColumn}
+          style={{
+            ...(column.isDefault && {
+              visibility: "hidden",
+            }),
+          }}
+        >
+          x
+        </button>
         {column.title}
       </div>
       <div className={styles.cards}>{renderCards()}</div>

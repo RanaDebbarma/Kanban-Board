@@ -13,9 +13,29 @@
 }
 
 .heading {
+    position: relative;
     color: hsl(0, 0%, 0%, 0.8);
     font-size: larger;
     font-weight: 500;
     margin-bottom: 12px;
     text-align: center;
+}
+
+.heading button {
+    position: absolute;
+    left: 0;
+
+    background-color: transparent;
+    color: hsla(0, 0%, 0%, 0.5);
+    font-size: large;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+}
+
+.heading button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }
