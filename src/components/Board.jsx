@@ -21,7 +21,7 @@ export default function Board() {
 
   return (
     <div className={styles.boardBody}>
-      <nav className={styles.title}>Kan-ban baord</nav>
+      <nav className={styles.title}>Kan-ban board</nav>
 
       <div className={styles.stages}>{renderStages()}</div>
     </div>
