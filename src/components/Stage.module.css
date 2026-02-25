@@ -3,3 +3,8 @@
   align-items: flex-start; /**/
   gap: 4px;
 }
+
+.columns button {
+  border-radius: 50%;
+  border: none;
+}

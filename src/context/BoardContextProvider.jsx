@@ -8,7 +8,7 @@ const initialState = {
       id: "input",
       title: "Input",
       color: "hsl(0, 50%, 85%)",
-      columnIds: ["backlog",],
+      columnIds: ["backlog"],
     },
     wip: {
       id: "wip",
@@ -30,6 +30,7 @@ const initialState = {
       title: "Backlog",
       stageId: "input",
       cardIds: ["test"],
+      isDefault: true,
     },
     // todo: {
     //   id: "todo",
@@ -42,12 +43,14 @@ const initialState = {
       title: "Doing",
       stageId: "wip",
       cardIds: [],
+      isDefault: true,
     },
     done: {
       id: "done",
       title: "Done",
       stageId: "output",
       cardIds: [],
+      isDefault: true,
     },
   },
 

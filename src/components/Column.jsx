@@ -12,6 +12,10 @@ export default function Column({ column }) {
     });
   }
 
+  const deleteColumn = () => {
+
+  }
+
   return (
     <div
       className={styles.column}
@@ -19,7 +23,10 @@ export default function Column({ column }) {
         backgroundColor: state.stages[column.stageId].color,
       }}
     >
-      <div className={styles.heading}>{column.title}</div>
+      <div className={styles.heading}>
+        <button onClick={deleteColumn}> - </button>
+        {column.title}
+      </div>
       <div className={styles.cards}>{renderCards()}</div>
     </div>
   );
