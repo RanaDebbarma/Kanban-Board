@@ -24,7 +24,6 @@ export default function Stage({ stage, columns, cards }) {
       type: "ADD_COLUMN",
       payload: {
         stageId: stage.id,
-        title: "New Column",
       },
     });
   };

@@ -1,7 +1,7 @@
 export default function boardReducer(state, action) {
   switch (action.type) {
     case "ADD_COLUMN": {
-      const { stageId, title } = action.payload;
+      const { stageId } = action.payload;
       const newId = crypto.randomUUID();
       return {
         ...state,
@@ -10,7 +10,7 @@ export default function boardReducer(state, action) {
           ...state.columns,
           [newId]: {
             id: newId,
-            title,
+            title: "New column",
             stageId,
             cardIds: [],
             isDefault: false,
@@ -66,7 +66,33 @@ export default function boardReducer(state, action) {
           [columnId]: {
             ...state.columns[columnId],
             title: newTitle,
-          }
+          },
+        },
+      };
+    }
+
+    case "ADD_CARDS": {
+      const { columnId } = action.payload;
+      const newId = crypto.randomUUID();
+
+      return {
+        ...state,
+
+        cards: {
+          ...state.cards,
+            [newId]: {
+            id: newId,
+            title: "New-card",
+            description: "description",
+          },
+        },
+
+        columns: {
+          ...state.columns,
+          [columnId]: {
+            ...state.columns[columnId],
+            cardIds: [...state.columns[columnId].cardIds, newId]
+          },
         },
       };
     }
