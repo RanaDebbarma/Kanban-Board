@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useBoard from "../hooks/useBoard";
 import styles from "./Card.module.css";
 
@@ -8,29 +8,27 @@ export default function Card({ card }) {
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [isEditingDescription, setIsEditingDescription] = useState(false);
 
-  const [title, setTitle] = useState(card.title);
-  const [description, setDescription] = useState(card.description);
+  const [titleDraft, setTitleDraft] = useState("");
+  const [descriptionDraft, setDescriptionDraft] = useState("");
 
-  // Keep local state in sync if global state changes
-  useEffect(() => {
-    setTitle(card.title);
-  }, [card.title]);
+  const startTitleEdit = () => {
+    setTitleDraft(card.title);
+    setIsEditingTitle(true);
+  };
 
-  useEffect(() => {
-    setDescription(card.description);
-  }, [card.description]);
+  const startDescriptionEdit = () => {
+    setDescriptionDraft(card.description);
+    setIsEditingDescription(true);
+  };
 
   const saveTitle = () => {
-    if (title.trim() === "") return;
-
     dispatch({
       type: "UPDATE_CARD",
       payload: {
         cardId: card.id,
-        newTitle: title,
+        newTitle: titleDraft,
       },
     });
-
     setIsEditingTitle(false);
   };
 
@@ -39,10 +37,9 @@ export default function Card({ card }) {
       type: "UPDATE_CARD",
       payload: {
         cardId: card.id,
-        newDescription: description,
+        newDescription: descriptionDraft,
       },
     });
-
     setIsEditingDescription(false);
   };
 
@@ -53,20 +50,17 @@ export default function Card({ card }) {
       <div className={styles.title}>
         {isEditingTitle ? (
           <input
-            value={title}
+            value={titleDraft}
             autoFocus
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => setTitleDraft(e.target.value)}
             onBlur={saveTitle}
             onKeyDown={(e) => {
               if (e.key === "Enter") saveTitle();
-              if (e.key === "Escape") {
-                setTitle(card.title);
-                setIsEditingTitle(false);
-              }
+              if (e.key === "Escape") setIsEditingTitle(false);
             }}
           />
         ) : (
-          <div onClick={() => setIsEditingTitle(true)}>
+          <div onClick={startTitleEdit}>
             {card.title}
           </div>
         )}
@@ -76,19 +70,16 @@ export default function Card({ card }) {
       <div className={styles.description}>
         {isEditingDescription ? (
           <textarea
-            value={description}
+            value={descriptionDraft}
             autoFocus
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => setDescriptionDraft(e.target.value)}
             onBlur={saveDescription}
             onKeyDown={(e) => {
-              if (e.key === "Escape") {
-                setDescription(card.description);
-                setIsEditingDescription(false);
-              }
+              if (e.key === "Escape") setIsEditingDescription(false);
             }}
           />
         ) : (
-          <div onClick={() => setIsEditingDescription(true)}>
+          <div onClick={startDescriptionEdit}>
             {card.description || "Add description..."}
           </div>
         )}
