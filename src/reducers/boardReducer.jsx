@@ -80,10 +80,10 @@ export default function boardReducer(state, action) {
 
         cards: {
           ...state.cards,
-            [newId]: {
+          [newId]: {
             id: newId,
             title: "New-card",
-            description: "description",
+            description: "",
           },
         },
 
@@ -91,7 +91,26 @@ export default function boardReducer(state, action) {
           ...state.columns,
           [columnId]: {
             ...state.columns[columnId],
-            cardIds: [...state.columns[columnId].cardIds, newId]
+            cardIds: [...state.columns[columnId].cardIds, newId],
+          },
+        },
+      };
+    }
+
+    case "UPDATE_CARD": {
+      const { cardId, newTitle, newDescription } = action.payload;
+
+      return {
+        ...state,
+
+        cards: {
+          ...state.cards,
+          [cardId]: {
+            ...state.cards[cardId],
+            ...(newTitle !== undefined && { title: newTitle }),
+            ...(newDescription !== undefined && {
+              description: newDescription,
+            }),
           },
         },
       };

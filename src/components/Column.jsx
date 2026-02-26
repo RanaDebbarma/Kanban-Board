@@ -49,8 +49,8 @@ export default function Column({ stage, column, cards }) {
   const addCard = () => {
     dispatch({
       type: "ADD_CARDS",
-      payload: {columnId: column.id},
-    })
+      payload: { columnId: column.id },
+    });
   };
 
   return (
@@ -83,15 +83,15 @@ export default function Column({ stage, column, cards }) {
         ) : (
           <div
             className={styles.title}
-            onDoubleClick={() => setIsEditing(true)}
+            onClick={() => setIsEditing(true)}
           >
             {column.title}
           </div>
         )}
       </div>
-      <div className={styles.cards}>
+      <div className={styles.columnBody}>
         <button onClick={addCard}> + </button>
-        {renderCards()}
+        <div className={styles.cards}>{renderCards()}</div>
       </div>
     </div>
   );

@@ -1,21 +1,53 @@
 .cardBody {
-    min-height: 100px;
-    width: 100%;
-    background-color: beige;
-    border: 2px solid hsl(0, 0%, 50%, 0.6);
-    border-radius: 4px;
+  min-height: 100px;
+  width: 100%;
+  background-color: beige;
+  border: 2px solid hsl(0, 0%, 50%, 0.6);
+  border-radius: 4px;
 
-    box-sizing: border-box;
-    padding: 16px;
+  box-sizing: border-box;
+  padding: 16px;
+}
+
+.title,
+.title input {
+  color: hsl(0, 0%, 0%, 0.8);
+  font-size: x-large;
+  margin-bottom: 12px;
+  line-height: 1.4;
+  width: 100%;
 }
 
 .title {
-    color: hsl(0, 0%, 0%, 0.8);
-    font-size: x-large;
-    font-weight: 500;
-    margin-bottom: 12px;
+    user-select: none;
+}
+
+.title input {
+  padding: 0;
+  margin: 0;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+  line-height: 1.35;
 }
 
 .description {
-    color: hsl(0, 0%, 0%, 0.8);
+  color: hsl(0, 0%, 0%, 0.8);
+  width: 100%;
+}
+
+.description textarea {
+  color: hsl(0, 0%, 0%, 0.8);
+  padding: 0;
+  margin: 0;
+  outline: none;
+  /* border: none; */
+  font-size: inherit;
+  font-weight: inherit;
+  background-color: transparent;
+  font-family: inherit;
+
+  width: 100%;
+  resize: none;
 }

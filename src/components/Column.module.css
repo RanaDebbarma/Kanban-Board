@@ -21,17 +21,11 @@
 .heading input, .title {
     background-color: transparent;
     color: hsl(0, 0%, 0%, 0.8);
-    outline: none;
-
+    
     font-size: larger;
-    font-weight: 500;
-    text-align: center;
-    line-height: 1.4;
-
+    text-align: center;    
     padding: 0;
     margin: 0;
-    /* box-sizing: border-box; */
-    /* field-sizing: content; */
 }
 
 .title {
@@ -39,8 +33,10 @@
 }
 
 .heading input {
-    border: 1px solid grey;
-    line-height: 1.35;
+    outline: none;
+    font-family: inherit;
+    /* border: 1px solid grey; */
+    border: none;
 }
 
 .heading button {
@@ -62,20 +58,29 @@
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-.cards button {
+.columnBody button {
     background-color: rgba(255, 255, 255, 0.4);
     height: 28px;
     width: 28px;
+    margin-bottom: 8px;
 }
 
-.cards button:hover {
+.columnBody button:hover {
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+.columnBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .cards {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
+
+    width: 100%;
 
     gap: 12px;
 }
