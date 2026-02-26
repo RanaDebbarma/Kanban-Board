@@ -32,7 +32,7 @@ export default function Stage({ stage, columns, cards }) {
     <>
       <div className={styles.columns}>
         {renderColumns()}
-        <button onClick={handleClick}> + </button>
+        <button className={styles.addColumnBtn} onClick={handleClick}> + </button>
       </div>
     </>
   );
