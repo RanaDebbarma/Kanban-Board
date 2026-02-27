@@ -40,7 +40,7 @@
   border: none;
 }
 
-.heading button {
+.heading .deleteColumnBtn {
   position: absolute;
   left: 0;
 
@@ -57,11 +57,11 @@
   border: none;
 }
 
-.heading button:hover {
-  background-color: rgba(0, 0, 0, 0.2);
+.heading .deleteColumnBtn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
-.columnBody button {
+.columnBody .addCardBtn {
   background-color: rgba(255, 255, 255, 0.4);
   height: 28px;
   width: 28px;
@@ -70,7 +70,7 @@
   margin-bottom: 8px;
 }
 
-.columnBody button:hover {
+.columnBody .addCardBtn:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 

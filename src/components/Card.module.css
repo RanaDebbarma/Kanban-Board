@@ -23,8 +23,17 @@
   user-select: none;
 }
 
-.deleteCard {
+.deleteCardBtn {
   background-color: transparent;
+  border-radius: 50%;
+  height: fit-content;
+  width: fit-content;
+
+  border: none;
+}
+
+.deleteCardBtn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .title input {
