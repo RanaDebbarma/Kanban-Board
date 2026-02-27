@@ -81,7 +81,7 @@ export default function Card({ card }) {
             <div onClick={startTitleEdit}>{card.title}</div>
           )}
         </div>
-        <button className={styles.deleteCardBtn} onClick={deleteCard}> ✕ </button>
+        <button className={styles.deleteCard} onClick={deleteCard}> ✕ </button>
       </div>
 
       {/* DESCRIPTION */}

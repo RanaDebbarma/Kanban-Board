@@ -108,7 +108,6 @@ export default function boardReducer(state, action) {
       };
     }
 
-    /////////////////////////////////////////////////
     case "REMOVE_CARD": {
       const { cardId, columnId } = action.payload;
       const newCards = {...state.cards};
