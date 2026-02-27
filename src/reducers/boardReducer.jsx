@@ -1,5 +1,15 @@
 export default function boardReducer(state, action) {
   switch (action.type) {
+    case "UPDATE_TITLE": {
+      const { newTitle } = action.payload;
+
+      return {
+        ...state,
+
+        title: newTitle,
+      }
+    }
+
     case "ADD_COLUMN": {
       const { stageId } = action.payload;
       const newId = crypto.randomUUID();

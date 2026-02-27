@@ -36,9 +36,10 @@ export default function Card({ card }) {
       type: "UPDATE_CARD",
       payload: {
         cardId: card.id,
-        newTitle: titleDraft,
+        newTitle: titleDraft.trim(),
       },
     });
+    setTitleDraft(titleDraft.trim());
     setIsEditingTitle(false);
   };
 
@@ -47,22 +48,23 @@ export default function Card({ card }) {
       type: "UPDATE_CARD",
       payload: {
         cardId: card.id,
-        newDescription: descriptionDraft,
+        newDescription: descriptionDraft.trim(),
       },
     });
+    setDescriptionDraft(descriptionDraft.trim());
     setIsEditingDescription(false);
   };
 
   const deleteCard = () => {
     dispatch({
       type: "REMOVE_CARD",
-      payload: { cardId: card.id, columnId: card.columnId}
-    })
-  }
+      payload: { cardId: card.id, columnId: card.columnId },
+    });
+  };
 
   return (
     <div className={styles.cardBody}>
-      {card.status}
+      status: {card.status}
       {/* TITLE */}
       <div className={styles.heading}>
         <div className={styles.title}>
@@ -81,9 +83,11 @@ export default function Card({ card }) {
             <div onClick={startTitleEdit}>{card.title}</div>
           )}
         </div>
-        <button className={styles.deleteCardBtn} onClick={deleteCard}> ✕ </button>
+        <button className={styles.deleteCardBtn} onClick={deleteCard}>
+          {" "}
+          ✕{" "}
+        </button>
       </div>
-
       {/* DESCRIPTION */}
       <div className={styles.description}>
         {isEditingDescription ? (
@@ -111,9 +115,7 @@ export default function Card({ card }) {
           </div>
         )}
       </div>
-      <div className={styles.cardDate}>
-        {card.date}
-      </div>
+      <div className={styles.cardDate}>{card.date}</div>
     </div>
   );
 }

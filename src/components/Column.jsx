@@ -41,8 +41,9 @@ export default function Column({ stage, column, cards }) {
     if (title.trim() === "") return;
     dispatch({
       type: "UPDATE_COLUMN_TITLE",
-      payload: { columnId: column.id, newTitle: title },
+      payload: { columnId: column.id, newTitle: title.trim() },
     });
+    setTitle(title.trim());
     setIsEditing(false);
   };
 
