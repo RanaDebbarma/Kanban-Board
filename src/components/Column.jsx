@@ -62,6 +62,7 @@ export default function Column({ stage, column, cards }) {
     >
       <div className={styles.heading}>
         <button
+          className={styles.deleteColumnBtn}
           onClick={deleteColumn}
           style={{
             ...(column.isDefault && {
@@ -81,16 +82,13 @@ export default function Column({ stage, column, cards }) {
             autoFocus
           />
         ) : (
-          <div
-            className={styles.title}
-            onClick={() => setIsEditing(true)}
-          >
+          <div className={styles.title} onClick={() => setIsEditing(true)}>
             {column.title}
           </div>
         )}
       </div>
       <div className={styles.columnBody}>
-        <button onClick={addCard}> + </button>
+        <button  className={styles.addCardBtn} onClick={addCard}> + </button>
         <div className={styles.cards}>{renderCards()}</div>
       </div>
     </div>

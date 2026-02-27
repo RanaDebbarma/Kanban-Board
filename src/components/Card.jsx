@@ -53,8 +53,16 @@ export default function Card({ card }) {
     setIsEditingDescription(false);
   };
 
+  const deleteCard = () => {
+    dispatch({
+      type: "REMOVE_CARD",
+      payload: { cardId: card.id, columnId: card.columnId}
+    })
+  }
+
   return (
     <div className={styles.cardBody}>
+      {card.columnId}
       {/* TITLE */}
       <div className={styles.heading}>
         <div className={styles.title}>
@@ -73,7 +81,7 @@ export default function Card({ card }) {
             <div onClick={startTitleEdit}>{card.title}</div>
           )}
         </div>
-        <button className={styles.deleteCard}> ✕ </button>
+        <button className={styles.deleteCardBtn} onClick={deleteCard}> ✕ </button>
       </div>
 
       {/* DESCRIPTION */}
@@ -102,9 +110,9 @@ export default function Card({ card }) {
             {card.description || "Add description..."}
           </div>
         )}
-        <div className={styles.cardDate}>
-          {card.date}
-        </div>
+      </div>
+      <div className={styles.cardDate}>
+        {card.date}
       </div>
     </div>
   );

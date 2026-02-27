@@ -67,6 +67,7 @@ const initialState = {
       title: "Your-title",
       description: "Add description...",
       date: date(),
+      columnId: "backlog",
     },
   },
   stageOrder: ["input", "wip", "output"],

@@ -94,6 +94,7 @@ export default function boardReducer(state, action) {
             title: "New-card",
             description: "",
             date: date,
+            columnId: columnId,
           },
         },
 
@@ -107,8 +108,27 @@ export default function boardReducer(state, action) {
       };
     }
 
+    /////////////////////////////////////////////////
     case "REMOVE_CARD": {
-      return; /////////////////////////////////////////////////
+      const { cardId, columnId } = action.payload;
+      const newCards = {...state.cards};
+      delete newCards[cardId];
+
+      return {
+        ...state,
+
+        cards: newCards,
+
+        columns: {
+          ...state.columns,
+          [columnId]: {
+            ...state.columns[columnId],
+            cardIds: state.columns[columnId].cardIds.filter(
+              (id) => id !== cardId,
+            ),
+          },
+        },
+      }; 
     }
 
     case "UPDATE_CARD": {
@@ -121,6 +141,7 @@ export default function boardReducer(state, action) {
           ...state.cards,
           [cardId]: {
             ...state.cards[cardId],
+            // ...({title: newTitle}),
             ...(newTitle !== undefined && { title: newTitle }),
             ...(newDescription !== undefined && {
               description: newDescription,
