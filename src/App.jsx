@@ -1,5 +1,6 @@
 import Board from "./components/Board";
 import BoardContextProvider from "./context/BoardContextProvider";
+import { Analytics } from '@vercel/analytics/react';
 import "./App.css";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <BoardContextProvider>
         <Board />
       </BoardContextProvider>
+      <Analytics />
     </>
   );
 }
