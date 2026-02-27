@@ -4,7 +4,7 @@ import styles from "./Board.module.css";
 // import { useState } from "react";
 
 export default function Board() {
-  const { state } = useBoard();
+  const { state, dispatch } = useBoard();
   // const [ darkMode, setDarkMode ] = useState(false);
 
   function renderStages() {
@@ -15,7 +15,7 @@ export default function Board() {
 
       return (
         <div key={stageId} className={styles.stage}>
-          <label className={styles.heading}>{stage.title}</label>
+          <label className={styles.StageHeading}>{stage.title}</label>
           <div className={styles.stageBody}>
             <Stage
               key={stageId}
@@ -36,8 +36,25 @@ export default function Board() {
 
   return (
     <div className={styles.boardBody}>
-      <nav className={styles.title}>
-        Kan-ban board
+      <nav className={styles.heading}>
+        <input
+          className={styles.title}
+          type="text"
+          value={state.title}
+          style={{ width: `${state.title?.length + 1 || 1}ch`}}
+          onChange={(e) => 
+                dispatch({
+              type: "UPDATE_TITLE",
+              payload: { newTitle: e.target.value },
+            })
+          }
+          onBlur={(e) => 
+                dispatch({
+              type: "UPDATE_TITLE",
+              payload: { newTitle: e.target.value.trim() },
+            })
+          }
+        />
         {/* <button onClick={toggleTheme}>Theme toggle</button> */}
       </nav>
 

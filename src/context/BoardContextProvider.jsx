@@ -16,6 +16,9 @@ const date = () => {
 };
 
 const initialState = {
+
+  title: "Kan-ban board",
+
   stages: {
     input: {
       id: "input",
