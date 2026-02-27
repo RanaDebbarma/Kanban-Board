@@ -2,6 +2,12 @@ import { BoardContext } from "./BoardContext";
 import { useReducer } from "react";
 import boardReducer from "../reducers/boardReducer";
 
+const date = () => {
+        const currentDate = new Date();
+        const date = currentDate.toLocaleString();
+        return date;
+      }
+
 const initialState = {
   stages: {
     input: {
@@ -51,8 +57,9 @@ const initialState = {
   cards: {
     test: {
       id: "test",
-      title: "Test-title",
-      description: "description",
+      title: "Your-title",
+      description: "Add description...",
+      date: date(),
     },
   },
   stageOrder: ["input", "wip", "output"],

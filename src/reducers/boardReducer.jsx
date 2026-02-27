@@ -74,6 +74,8 @@ export default function boardReducer(state, action) {
     case "ADD_CARDS": {
       const { columnId } = action.payload;
       const newId = crypto.randomUUID();
+      const currentDate = new Date();
+      const date = currentDate.toLocaleString();
 
       return {
         ...state,
@@ -84,6 +86,7 @@ export default function boardReducer(state, action) {
             id: newId,
             title: "New-card",
             description: "",
+            date: date,
           },
         },
 

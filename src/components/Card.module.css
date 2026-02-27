@@ -36,9 +36,11 @@
   color: hsl(0, 0%, 0%, 0.8);
   width: 100%;
   min-height: 1.5em;
-
+  
   white-space: pre-wrap;
   word-break: break-word;
+
+  user-select: none;
 }
 
 .description textarea {
@@ -59,4 +61,10 @@
   width: 100%;
   resize: none;
   overflow: hidden;
+}
+
+.cardDate {
+  margin-top: 12px;
+  font-size: 0.8em;
+  user-select: none;
 }

@@ -99,6 +99,9 @@ export default function Card({ card }) {
             {card.description || "Add description..."}
           </div>
         )}
+        <div className={styles.cardDate}>
+          {card.date}
+        </div>
       </div>
     </div>
   );
