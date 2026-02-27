@@ -18,8 +18,13 @@
   width: 100%;
 }
 
-.title {
+.heading {
+  display: flex;
   user-select: none;
+}
+
+.deleteCard {
+  background-color: transparent;
 }
 
 .title input {

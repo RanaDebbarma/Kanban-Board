@@ -3,10 +3,17 @@ import { useReducer } from "react";
 import boardReducer from "../reducers/boardReducer";
 
 const date = () => {
-        const currentDate = new Date();
-        const date = currentDate.toLocaleString();
-        return date;
-      }
+  const currentDate = new Date();
+  const date = currentDate.toLocaleString([], {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+  return date;
+};
 
 const initialState = {
   stages: {
