@@ -8,4 +8,4 @@ I made this project for learning purpose, so right now i only plan to implement 
 
 ## Work is still in progress
 
-A lot of things are still missing right now
+Currently working on Drag and drop feature
