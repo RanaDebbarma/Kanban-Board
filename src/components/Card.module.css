@@ -19,7 +19,7 @@
 }
 
 .title {
-    user-select: none;
+  user-select: none;
 }
 
 .title input {
@@ -35,6 +35,10 @@
 .description {
   color: hsl(0, 0%, 0%, 0.8);
   width: 100%;
+  min-height: 1.5em;
+
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .description textarea {
@@ -42,12 +46,17 @@
   padding: 0;
   margin: 0;
   outline: none;
-  /* border: none; */
-  font-size: inherit;
-  font-weight: inherit;
+  border: none;
+  /* border: 1px solid grey; */
   background-color: transparent;
-  font-family: inherit;
+
+  /* line-height: inherit; */
+  font: inherit;
+  /* font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit; */
 
   width: 100%;
   resize: none;
+  overflow: hidden;
 }

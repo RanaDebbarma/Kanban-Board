@@ -9,7 +9,7 @@
   padding: 12px;
 
   box-sizing: border-box;
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 .heading {

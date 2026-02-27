@@ -14,6 +14,7 @@
   align-items: center;
   font-size: xx-large;
   height: 60px;
+  user-select: none;
 }
 
 .stages {
@@ -29,6 +30,7 @@
   font-weight: 500;
   padding-left: 12px;
   padding-bottom: 8px;
+  user-select: none;
 }
 
 .stage {
