@@ -103,4 +103,3 @@ export default function Card({ card }) {
     </div>
   );
 }
-// Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos quae quis modi quia nisi cupiditate qui? Cum et aspernatur dolores facere, iusto iste inventore itaque hic deleniti saepe officia odio.
