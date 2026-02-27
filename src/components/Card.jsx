@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useBoard from "../hooks/useBoard";
 import styles from "./Card.module.css";
 
@@ -10,6 +10,16 @@ export default function Card({ card }) {
 
   const [titleDraft, setTitleDraft] = useState("");
   const [descriptionDraft, setDescriptionDraft] = useState("");
+
+  const textAreaRef = useRef(null);
+
+  useEffect(() => {
+    if (textAreaRef.current) {
+      textAreaRef.current.style.height = "auto"; // reset
+      textAreaRef.current.style.height =
+        textAreaRef.current.scrollHeight + "px";
+    }
+  }, [isEditingDescription, descriptionDraft]);
 
   const startTitleEdit = () => {
     setTitleDraft(card.title);
@@ -45,24 +55,21 @@ export default function Card({ card }) {
 
   return (
     <div className={styles.cardBody}>
-      
       {/* TITLE */}
       <div className={styles.title}>
         {isEditingTitle ? (
           <input
             value={titleDraft}
-            autoFocus
             onChange={(e) => setTitleDraft(e.target.value)}
             onBlur={saveTitle}
             onKeyDown={(e) => {
               if (e.key === "Enter") saveTitle();
               if (e.key === "Escape") setIsEditingTitle(false);
             }}
+            autoFocus
           />
         ) : (
-          <div onClick={startTitleEdit}>
-            {card.title}
-          </div>
+          <div onClick={startTitleEdit}>{card.title}</div>
         )}
       </div>
 
@@ -70,13 +77,22 @@ export default function Card({ card }) {
       <div className={styles.description}>
         {isEditingDescription ? (
           <textarea
+            ref={textAreaRef}
             value={descriptionDraft}
-            autoFocus
             onChange={(e) => setDescriptionDraft(e.target.value)}
             onBlur={saveDescription}
             onKeyDown={(e) => {
               if (e.key === "Escape") setIsEditingDescription(false);
             }}
+            rows={1}
+            spellCheck="false"
+            autoFocus
+            onFocus={(e) =>
+              e.target.setSelectionRange(
+                e.target.value.length,
+                e.target.value.length,
+              )
+            }
           />
         ) : (
           <div onClick={startDescriptionEdit}>
@@ -84,7 +100,6 @@ export default function Card({ card }) {
           </div>
         )}
       </div>
-
     </div>
   );
 }
