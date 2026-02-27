@@ -1,5 +1,5 @@
 import { BoardContext } from "./BoardContext";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import boardReducer from "../reducers/boardReducer";
 
 const date = () => {
@@ -16,7 +16,6 @@ const date = () => {
 };
 
 const initialState = {
-
   title: "Kan-ban board",
 
   stages: {
@@ -67,17 +66,27 @@ const initialState = {
   cards: {
     test: {
       id: "test",
+      status: "Backlog",
       title: "Your-title",
       description: "Add description...",
-      date: date(),
       columnId: "backlog",
+      date: date(),
     },
   },
   stageOrder: ["input", "wip", "output"],
 };
 
+const init = (initialState) => {
+  const storedState = localStorage.getItem("kanbanBoard");
+  return storedState ? JSON.parse(storedState) : initialState;
+};
+
 export default function BoardContextProvider({ children }) {
-  const [state, dispatch] = useReducer(boardReducer, initialState);
+  const [state, dispatch] = useReducer(boardReducer, initialState, init);
+
+  useEffect(() => {
+    localStorage.setItem("kanbanBoard", JSON.stringify(state));
+  }, [state]);
 
   return (
     <BoardContext.Provider value={{ state, dispatch }}>

@@ -64,7 +64,9 @@ export default function Card({ card }) {
 
   return (
     <div className={styles.cardBody}>
-      status: {card.status}
+      <div className={styles.cardStatus}>
+        status: {card.status}
+      </div>
       {/* TITLE */}
       <div className={styles.heading}>
         <div className={styles.title}>

@@ -11,6 +11,12 @@
   user-select: none;
 }
 
+.cardStatus {
+  color: rgba(0, 0, 0, 0.8);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 0.8em;
+}
+
 .title,
 .title input {
   color: hsl(0, 0%, 0%, 0.8);
