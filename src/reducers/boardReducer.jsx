@@ -58,6 +58,18 @@ export default function boardReducer(state, action) {
 
     case "UPDATE_COLUMN_TITLE": {
       const { columnId, newTitle } = action.payload;
+
+      // updating card status
+      const column = state.columns[columnId];
+      const newCards = { ...state.cards };
+
+      column.cardIds.forEach((cardId) => {
+        newCards[cardId] = {
+          ...newCards[cardId],
+          status: newTitle,
+        };
+      });
+
       return {
         ...state,
 
@@ -68,6 +80,9 @@ export default function boardReducer(state, action) {
             title: newTitle,
           },
         },
+
+        // updating card status
+        cards: newCards,
       };
     }
 
@@ -94,6 +109,7 @@ export default function boardReducer(state, action) {
             title: "New-card",
             description: "",
             date: date,
+            status: state.columns[columnId].title,
             columnId: columnId,
           },
         },
@@ -110,7 +126,7 @@ export default function boardReducer(state, action) {
 
     case "REMOVE_CARD": {
       const { cardId, columnId } = action.payload;
-      const newCards = {...state.cards};
+      const newCards = { ...state.cards };
       delete newCards[cardId];
 
       return {
@@ -127,7 +143,7 @@ export default function boardReducer(state, action) {
             ),
           },
         },
-      }; 
+      };
     }
 
     case "UPDATE_CARD": {
@@ -140,7 +156,6 @@ export default function boardReducer(state, action) {
           ...state.cards,
           [cardId]: {
             ...state.cards[cardId],
-            // ...({title: newTitle}),
             ...(newTitle !== undefined && { title: newTitle }),
             ...(newDescription !== undefined && {
               description: newDescription,

@@ -62,7 +62,7 @@ export default function Card({ card }) {
 
   return (
     <div className={styles.cardBody}>
-      {card.columnId}
+      {card.status}
       {/* TITLE */}
       <div className={styles.heading}>
         <div className={styles.title}>
