@@ -75,7 +75,14 @@ export default function boardReducer(state, action) {
       const { columnId } = action.payload;
       const newId = crypto.randomUUID();
       const currentDate = new Date();
-      const date = currentDate.toLocaleString();
+      const date = currentDate.toLocaleString([], {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+      });
 
       return {
         ...state,
@@ -98,6 +105,10 @@ export default function boardReducer(state, action) {
           },
         },
       };
+    }
+
+    case "REMOVE_CARD": {
+      return; /////////////////////////////////////////////////
     }
 
     case "UPDATE_CARD": {

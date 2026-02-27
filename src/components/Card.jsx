@@ -56,21 +56,24 @@ export default function Card({ card }) {
   return (
     <div className={styles.cardBody}>
       {/* TITLE */}
-      <div className={styles.title}>
-        {isEditingTitle ? (
-          <input
-            value={titleDraft}
-            onChange={(e) => setTitleDraft(e.target.value)}
-            onBlur={saveTitle}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") saveTitle();
-              if (e.key === "Escape") setIsEditingTitle(false);
-            }}
-            autoFocus
-          />
-        ) : (
-          <div onClick={startTitleEdit}>{card.title}</div>
-        )}
+      <div className={styles.heading}>
+        <div className={styles.title}>
+          {isEditingTitle ? (
+            <input
+              value={titleDraft}
+              onChange={(e) => setTitleDraft(e.target.value)}
+              onBlur={saveTitle}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") saveTitle();
+                if (e.key === "Escape") setIsEditingTitle(false);
+              }}
+              autoFocus
+            />
+          ) : (
+            <div onClick={startTitleEdit}>{card.title}</div>
+          )}
+        </div>
+        <button className={styles.deleteCard}> ✕ </button>
       </div>
 
       {/* DESCRIPTION */}
