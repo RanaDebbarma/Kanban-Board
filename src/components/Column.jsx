@@ -59,7 +59,8 @@ export default function Column({ stage, column, cards }) {
       className={styles.column}
       data-column-id={column.id}
       style={{
-        backgroundColor: stage.color,
+        backgroundColor: "",
+        border: `2px solid ${stage.color}`,
       }}
     >
       <div className={styles.heading}>

@@ -16,25 +16,25 @@ const date = () => {
 };
 
 const initialState = {
-  title: "Kan-ban board",
+  title: "Board name",
 
   stages: {
     input: {
       id: "input",
       title: "Input",
-      color: "hsl(0, 50%, 85%)",
+      color: "hsl(0, 40%, 32%)",
       columnIds: ["backlog"],
     },
     wip: {
       id: "wip",
       title: "In progress",
-      color: "hsl(208, 50%, 85%)",
+      color: "hsl(210, 60%, 30%)",
       columnIds: ["doing"],
     },
     output: {
       id: "output",
       title: "Output",
-      color: "hsl(140, 50%, 85%)",
+      color: "hsl(140, 60%, 25%)",
       columnIds: ["done"],
     },
   },
@@ -76,17 +76,17 @@ const initialState = {
   stageOrder: ["input", "wip", "output"],
 };
 
-const init = (initialState) => {
-  const storedState = localStorage.getItem("kanbanBoard");
-  return storedState ? JSON.parse(storedState) : initialState;
-};
+// const init = (initialState) => {
+//   const storedState = localStorage.getItem("kanbanBoard");
+//   return storedState ? JSON.parse(storedState) : initialState;
+// };
 
 export default function BoardContextProvider({ children }) {
-  const [state, dispatch] = useReducer(boardReducer, initialState, init);
+  const [state, dispatch] = useReducer(boardReducer, initialState);
 
-  useEffect(() => {
-    localStorage.setItem("kanbanBoard", JSON.stringify(state));
-  }, [state]);
+  // useEffect(() => {
+  //   localStorage.setItem("kanbanBoard", JSON.stringify(state));
+  // }, [state]);
 
   return (
     <BoardContext.Provider value={{ state, dispatch }}>

@@ -1,8 +1,8 @@
 .cardBody {
   min-height: 100px;
   width: 100%;
-  background-color: beige;
-  border: 1px solid hsl(0, 0%, 50%, 0.6);
+  background-color: var(--bg-card);
+  border: 1px solid var(--accent);
   border-radius: 4px;
 
   box-sizing: border-box;
@@ -12,14 +12,14 @@
 }
 
 .cardStatus {
-  color: rgba(0, 0, 0, 0.8);
+  color: var(--text-secondary);
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 0.8em;
 }
 
 .title,
 .title input {
-  color: hsl(0, 0%, 0%, 0.8);
+  color: var(--text-primary);
   font-size: x-large;
   margin-bottom: 12px;
   line-height: 1.4;
@@ -33,15 +33,17 @@
 
 .deleteCardBtn {
   background-color: transparent;
+  color: var(--text-primary);
   border-radius: 50%;
-  height: fit-content;
-  width: fit-content;
+  height: 32px;
+  width: 32px;
 
   border: none;
+  transition: 0.3s ease;
 }
 
 .deleteCardBtn:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: hsla(0, 0%, 100%, 0.1);
 }
 
 .title input {
@@ -55,8 +57,7 @@
 }
 
 .description {
-  color: hsl(0, 0%, 0%, 0.8);
-  /* border: 1px solid grey; */
+  color: var(--text-primary);
   width: 100%;
   min-height: 1.5em;
   
@@ -67,8 +68,7 @@
 }
 
 .description textarea {
-  color: hsl(0, 0%, 0%, 0.8);
-  /* border: 1px solid grey; */
+  color: var(--text-primary);
   padding: 0;
   margin: 0;
   outline: none;
@@ -83,7 +83,7 @@
 }
 
 .cardDate {
-  color: hsl(0, 0%, 0%, 0.4);
+  color: var(--text-secondary);
   margin-top: 12px;
   font-size: 0.8em;
   user-select: none;

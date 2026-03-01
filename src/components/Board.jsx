@@ -36,29 +36,37 @@ export default function Board() {
 
   return (
     <div className={styles.boardBody}>
-      <nav className={styles.heading}>
-        <input
-          className={styles.title}
-          type="text"
-          value={state.title}
-          style={{ width: `${state.title?.length + 1 || 1}ch`}}
-          onChange={(e) => 
-                dispatch({
-              type: "UPDATE_TITLE",
-              payload: { newTitle: e.target.value },
-            })
-          }
-          onBlur={(e) => 
-                dispatch({
-              type: "UPDATE_TITLE",
-              payload: { newTitle: e.target.value.trim() },
-            })
-          }
-        />
-        {/* <button onClick={toggleTheme}>Theme toggle</button> */}
-      </nav>
-
-      <div className={styles.stages}>{renderStages()}</div>
+      <div className={styles.navBar}>
+        <div className={styles.navHeading}>
+          Kanban-board
+        </div>
+        <div> about </div>
+        <div> contact </div>
+        <div> github </div>
+      </div>
+      <div className={styles.workingArea}>
+        <nav className={styles.heading}>
+          <input
+            className={styles.title}
+            type="text"
+            value={state.title}
+            style={{ width: `${state.title?.length + 1 || 1}ch` }}
+            onChange={(e) =>
+              dispatch({
+                type: "UPDATE_TITLE",
+                payload: { newTitle: e.target.value },
+              })
+            }
+            onBlur={(e) =>
+              dispatch({
+                type: "UPDATE_TITLE",
+                payload: { newTitle: e.target.value.trim() },
+              })
+            }
+          />
+        </nav>
+        <div className={styles.stages}>{renderStages()}</div>
+      </div>
     </div>
   );
 }

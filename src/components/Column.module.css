@@ -3,13 +3,12 @@
   min-height: 100px;
   height: auto;
 
-  border: 1px solid rgba(128, 128, 128, 0.7);
-  border-radius: 8px;
+  box-sizing: border-box;
 
+  border-radius: 8px;
   padding: 12px;
 
-  box-sizing: border-box;
-  /* overflow: auto; */
+  background-color: var(--bg-main) ;
 }
 
 .heading {
@@ -21,7 +20,7 @@
 .heading input,
 .title {
   background-color: transparent;
-  color: hsl(0, 0%, 0%, 0.8);
+  color: var(--text-primary);
 
   font-size: larger;
   text-align: center;
@@ -36,42 +35,50 @@
 .heading input {
   outline: none;
   font-family: inherit;
-  /* border: 1px solid grey; */
   border: none;
 }
 
 .heading .deleteColumnBtn {
   position: absolute;
-  left: 0;
+  right: 0;
 
   background-color: transparent;
-  color: hsla(0, 0%, 0%, 0.5);
+  color: var(--text-primary);
   font-size: medium;
 
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: none;
+  transition: 0.3s ease;
 }
 
 .heading .deleteColumnBtn:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: hsla(0, 0%, 100%, 0.1);
 }
 
 .columnBody .addCardBtn {
-  background-color: rgba(255, 255, 255, 0.4);
-  height: 28px;
-  width: 28px;
+  background-color: transparent;
+  color: var(--text-secondary);
+  font-size: 1.6em;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  height: 32px;
+  width: 32px;
   border-radius: 50%;
   border: none;
   margin-bottom: 8px;
+  transition: 0.3s ease;
 }
 
 .columnBody .addCardBtn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: hsla(0, 0%, 100%, 0.1);
 }
 
 .columnBody {
