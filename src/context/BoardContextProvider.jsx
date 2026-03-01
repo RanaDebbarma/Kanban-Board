@@ -76,17 +76,17 @@ const initialState = {
   stageOrder: ["input", "wip", "output"],
 };
 
-// const init = (initialState) => {
-//   const storedState = localStorage.getItem("kanbanBoard");
-//   return storedState ? JSON.parse(storedState) : initialState;
-// };
+const init = (initialState) => {
+  const storedState = localStorage.getItem("kanbanBoard");
+  return storedState ? JSON.parse(storedState) : initialState;
+};
 
 export default function BoardContextProvider({ children }) {
-  const [state, dispatch] = useReducer(boardReducer, initialState);
+  const [state, dispatch] = useReducer(boardReducer, initialState, init);
 
-  // useEffect(() => {
-  //   localStorage.setItem("kanbanBoard", JSON.stringify(state));
-  // }, [state]);
+  useEffect(() => {
+    localStorage.setItem("kanbanBoard", JSON.stringify(state));
+  }, [state]);
 
   return (
     <BoardContext.Provider value={{ state, dispatch }}>
