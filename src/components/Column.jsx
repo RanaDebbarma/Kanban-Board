@@ -57,6 +57,7 @@ export default function Column({ stage, column, cards }) {
   return (
     <div
       className={styles.column}
+      data-column-id={column.id}
       style={{
         backgroundColor: stage.color,
       }}
@@ -88,7 +89,7 @@ export default function Column({ stage, column, cards }) {
           </div>
         )}
       </div>
-      <div className={styles.columnBody} data-column-id={column.id}>
+      <div className={styles.columnBody}>
         <button  className={styles.addCardBtn} onClick={addCard}> + </button>
         <div className={styles.cards}>{renderCards()}</div>
       </div>
