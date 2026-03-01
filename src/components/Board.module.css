@@ -10,6 +10,10 @@
   --border: #1b2a41;
 
   --bg-stage: hsla(0, 0%, 100%, 0.08);
+
+  --input: hsl(0, 40%, 30%);
+  --wip: hsl(210, 60%, 30%);
+  --output: hsl(140, 60%, 25%);
 }
 
 .boardBody {

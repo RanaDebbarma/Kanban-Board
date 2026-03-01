@@ -29,11 +29,6 @@ export default function Board() {
     });
   }
 
-  // const toggleTheme = () => {
-  //   setDarkMode(prev => !prev);
-  //   console.log(darkMode);
-  // }
-
   return (
     <div className={styles.boardBody}>
       <div className={styles.navBar}>

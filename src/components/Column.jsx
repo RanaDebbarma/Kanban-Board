@@ -54,13 +54,18 @@ export default function Column({ stage, column, cards }) {
     });
   };
 
+  const borderMap = {
+    input: "2px solid var(--input)",
+    wip: "2px solid var(--wip)",
+    output: "2px solid var(--output)",
+  }
+
   return (
     <div
       className={styles.column}
       data-column-id={column.id}
       style={{
-        backgroundColor: "",
-        border: `2px solid ${stage.color}`,
+        border: borderMap[stage.id] || `2px solid var(--accent)`,
       }}
     >
       <div className={styles.heading}>

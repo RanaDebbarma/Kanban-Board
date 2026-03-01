@@ -22,19 +22,16 @@ const initialState = {
     input: {
       id: "input",
       title: "Input",
-      color: "hsl(0, 40%, 32%)",
       columnIds: ["backlog"],
     },
     wip: {
       id: "wip",
       title: "In progress",
-      color: "hsl(210, 60%, 30%)",
       columnIds: ["doing"],
     },
     output: {
       id: "output",
       title: "Output",
-      color: "hsl(140, 60%, 25%)",
       columnIds: ["done"],
     },
   },
