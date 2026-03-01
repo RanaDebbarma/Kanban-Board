@@ -88,7 +88,7 @@ export default function Column({ stage, column, cards }) {
           </div>
         )}
       </div>
-      <div className={styles.columnBody}>
+      <div className={styles.columnBody} data-column-id={column.id}>
         <button  className={styles.addCardBtn} onClick={addCard}> + </button>
         <div className={styles.cards}>{renderCards()}</div>
       </div>

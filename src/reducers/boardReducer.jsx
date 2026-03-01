@@ -7,7 +7,7 @@ export default function boardReducer(state, action) {
         ...state,
 
         title: newTitle,
-      }
+      };
     }
 
     case "ADD_COLUMN": {
@@ -175,6 +175,38 @@ export default function boardReducer(state, action) {
       };
     }
 
+    case "MOVE_CARD": {
+      const { cardId, srcId, dstId } = action.payload;
+
+      if (srcId === dstId) return state;
+
+      return {
+        ...state,
+
+        columns: {
+          ...state.columns,
+
+          [srcId]: {
+            ...state.columns[srcId],
+            cardIds: state.columns[srcId].cardIds.filter((id) => id !== cardId),
+          },
+
+          [dstId]: {
+            ...state.columns[dstId],
+            cardIds: [...state.columns[dstId].cardIds, cardId],
+          },
+        },
+
+        cards: {
+          ...state.cards,
+          [cardId]: {
+            ...state.cards[cardId],
+            columnId: dstId,
+            status: state.columns[dstId].title,
+          },
+        },
+      }
+    }
     default:
       return state;
   }
