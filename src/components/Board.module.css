@@ -20,7 +20,7 @@
 }
 
 .heading .title {
-  position: absolute;
+  /* position: absolute; */
   background-color: transparent;
   color: hsl(0, 0%, 0%, 0.7);
   border: none;

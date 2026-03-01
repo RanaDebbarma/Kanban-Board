@@ -89,7 +89,7 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
         transform: `translate(${pos.x}px, ${pos.y}px)`,
         zIndex: zIndex,
 
-        backgroundColor: "white",
+        touchAction: "none",
       }}
     >
       {children}
