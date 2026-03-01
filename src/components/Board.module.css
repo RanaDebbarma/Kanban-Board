@@ -1,13 +1,13 @@
 :root {
-  --bg-main: #0d0d0d;
-  --bg-column: #1a1a1a;
-  --bg-card: #262626;
+  --bg-main: #0b132b;
+  --bg-column: #1c2541;
+  --bg-card: #3a506b;
 
-  --text-primary: hsl(0, 0%, 100%, 0.8);
-  --text-secondary: #a1a1aa;
+  --text-primary: #ffffff;
+  --text-secondary: #b0c4de;
 
-  --accent: #8b5cf6;
-  --border: #2e2e2e;
+  --accent: #5bc0be;
+  --border: #1b2a41;
 
   --bg-stage: hsla(0, 0%, 100%, 0.08);
 }

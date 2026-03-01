@@ -40,9 +40,7 @@ export default function Board() {
         <div className={styles.navHeading}>
           Kanban-board
         </div>
-        <div> about </div>
         <div> contact </div>
-        <div> github </div>
       </div>
       <div className={styles.workingArea}>
         <nav className={styles.heading}>
