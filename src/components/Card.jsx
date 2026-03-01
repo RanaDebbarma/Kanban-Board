@@ -67,10 +67,6 @@ export default function Card({ card }) {
     <DraggableCard cardId={card.id} srcColumnId={card.columnId}>
       <div
         className={styles.cardBody}
-        // draggable="true"
-        // onDragOver={(e) => {
-        //   e.preventDefault;
-        // }}
       >
         <div className={styles.cardStatus}>status: {card.status}</div>
         {/* TITLE */}

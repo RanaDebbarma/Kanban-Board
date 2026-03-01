@@ -1,15 +1,17 @@
 :root {
-  --bg-main: #0b132b;
-  --bg-column: #1c2541;
-  --bg-card: #3a506b;
+  --bg-main: #0e0f12;
+  --bg-column: #16191f;
+  --bg-card: hsl(227, 13%, 16%);
 
-  --text-primary: #ffffff;
-  --text-secondary: #b0c4de;
+  --text-primary: #e8edef;
+  --text-secondary: #8596ab;
 
-  --accent: #5bc0be;
-  --border: #1b2a41;
-
+  --accent: #00ffbb;
+  --border: #3f485e;
+  
   --bg-stage: hsla(0, 0%, 100%, 0.08);
+  --bg-stage: var(--bg-card);
+  /* --border: #4a5775; */
 
   --input: hsl(0, 40%, 30%);
   --wip: hsl(210, 60%, 30%);
@@ -31,7 +33,6 @@
   font-weight: 400;
 
   box-sizing: border-box;
-  /* border-right: 1px solid rgba(0, 0, 0, 0.4); */
 
   width: 100%;
   height: 60px;
@@ -42,7 +43,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px
+  gap: 12px;
+
+  user-select: none;
 }
 
 .workingArea {
