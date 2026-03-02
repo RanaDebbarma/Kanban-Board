@@ -1,19 +1,21 @@
 .columns {
+  box-sizing: border-box;
   display: flex;
   align-items: flex-start; /**/
-  gap: 4px;
+  gap: 2px;
+  height: 100%;
 }
 
 .columns .addColumnBtn {
-  border-radius: 50%;
-  height: 32px;
-  width: 32px;
+  border-radius: 4px;
+  height: 100%;
+  width: 28px;
   border: none;
 
   background-color: rgba(255, 255, 255, 0);
   color: var(--text-secondary);
   
-  font-size: 1.6em;
+  font-size: 1.2rem;
 
   display: flex;
   justify-content: center;
@@ -23,5 +25,6 @@
 }
 
 .columns .addColumnBtn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
 }

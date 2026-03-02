@@ -6,28 +6,27 @@
   border-radius: 4px;
 
   box-sizing: border-box;
-  padding: 16px;
+  padding: 14px;
 
   user-select: none;
 }
 
-/* .cardBody:active {
-  transform: scale(1.05);
-  box-shadow: 0px 4px 8px hsl(0, 0%, 0%, 0.5);
-  cursor:move;
-} */
+.cardBody:hover {
+  box-shadow: 0px 0px 2px var(--accent);
+  translate: 0px -2px;
+}
 
 .cardStatus {
   color: var(--text-secondary);
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 0.8em;
+  /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+  font-size: 0.7rem;
 }
 
 .title,
 .title input {
   color: var(--text-primary);
-  font-size: x-large;
-  margin-bottom: 12px;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
   line-height: 1.4;
   width: 100%;
 }
@@ -41,15 +40,16 @@
   background-color: transparent;
   color: var(--text-primary);
   border-radius: 50%;
-  height: 32px;
-  width: 32px;
+  height: 28px;
+  width: 28px;
 
   border: none;
   transition: 0.3s ease;
 }
 
 .deleteCardBtn:hover {
-  background-color: hsla(0, 0%, 100%, 0.1);
+  background-color: hsla(0, 0%, 100%, 0.08);
+  cursor: pointer;
 }
 
 .title input {
@@ -65,7 +65,10 @@
 .description {
   color: var(--text-primary);
   width: 100%;
-  min-height: 1.5em;
+  min-height: 1.5rem;
+
+  font-size: 0.9rem;
+  font-weight: 400;
   
   white-space: pre-wrap;
   word-break: break-word;
@@ -90,7 +93,7 @@
 
 .cardDate {
   color: var(--text-secondary);
-  margin-top: 12px;
-  font-size: 0.8em;
+  margin-top: 10px;
+  font-size: 0.75rem;
   user-select: none;
 }

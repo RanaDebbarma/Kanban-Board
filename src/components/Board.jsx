@@ -13,8 +13,20 @@ export default function Board() {
       const columns = state.columns;
       const cards = state.cards;
 
+      const borderMap = {
+        input: "1px solid var(--input)",
+        wip: "1px solid var(--wip)",
+        output: "1px solid var(--output)",
+      };
+
       return (
-        <div key={stageId} className={styles.stage}>
+        <div
+          key={stageId}
+          className={styles.stage}
+          style={{
+            border: borderMap[stage.id] || `1px solid var(--border)`,
+          }}
+        >
           <label className={styles.StageHeading}>{stage.title}</label>
           <div className={styles.stageBody}>
             <Stage
@@ -32,9 +44,7 @@ export default function Board() {
   return (
     <div className={styles.boardBody}>
       <div className={styles.navBar}>
-        <div className={styles.navHeading}>
-          Kanban-board
-        </div>
+        <div className={styles.navHeading}>Kanban-board</div>
         <div> contact </div>
       </div>
       <div className={styles.workingArea}>

@@ -99,7 +99,7 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
         width: "100%",
         transform: `
           translate(${pos.x}px, ${pos.y}px)
-          ${isDragging ? "scale(1.05)" : "scale(1)"}
+          ${isDragging ? "scale(1.09)" : "scale(1)"}
         `,
 
         zIndex: zIndex,

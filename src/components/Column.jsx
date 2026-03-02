@@ -3,7 +3,7 @@ import useBoard from "../hooks/useBoard";
 import Card from "./Card";
 import styles from "./Column.module.css";
 
-export default function Column({ stage, column, cards }) {
+export default function Column({ column, cards }) {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(column.title);
   const { dispatch } = useBoard();
@@ -54,18 +54,12 @@ export default function Column({ stage, column, cards }) {
     });
   };
 
-  const borderMap = {
-    input: "2px solid var(--input)",
-    wip: "2px solid var(--wip)",
-    output: "2px solid var(--output)",
-  }
-
   return (
     <div
       className={styles.column}
       data-column-id={column.id}
       style={{
-        border: borderMap[stage.id] || `2px solid var(--accent)`,
+        border: `1px solid var(--border)`,
       }}
     >
       <div className={styles.heading}>
@@ -81,22 +75,32 @@ export default function Column({ stage, column, cards }) {
           ✕
         </button>
         {isEditing ? (
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            onBlur={handleBlur}
-            onKeyDown={handleKeyDown}
-            autoFocus
-          />
+          <div>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              onBlur={handleBlur}
+              onKeyDown={handleKeyDown}
+              autoFocus
+            />
+          </div>
         ) : (
-          <div className={styles.title} onClick={() => setIsEditing(true)}>
+          <div
+            className={styles.title}
+            onDoubleClick={() => setIsEditing(true)}
+          >
             {column.title}
+            <span className={styles.cardCount}>
+              {/* ({column.cardIds.length}) */}
+            </span>
           </div>
         )}
       </div>
       <div className={styles.columnBody}>
-        <button  className={styles.addCardBtn} onClick={addCard}> + </button>
+        <button className={styles.addCardBtn} onClick={addCard}>
+          + Add card
+        </button>
         <div className={styles.cards}>{renderCards()}</div>
       </div>
     </div>
