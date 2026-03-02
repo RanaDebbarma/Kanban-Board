@@ -14,6 +14,8 @@
   --input: hsl(0, 80%, 65%);
   --wip: hsl(210, 100%, 60%);
   --output: hsl(140, 90%, 60%);
+
+  --progress: 30%;
 }
 
 .boardBody {
@@ -28,7 +30,7 @@
   border-bottom: 1px solid var(--border);
   color: var(--accent);
 
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 400;
 
   box-sizing: border-box;
@@ -70,7 +72,7 @@
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 400;
   height: 52px;
   user-select: none;
