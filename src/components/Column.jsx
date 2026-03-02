@@ -91,13 +91,19 @@ export default function Column({ column, cards }) {
             onDoubleClick={() => setIsEditing(true)}
           >
             {column.title}
-            <span className={styles.cardCount}>
-              {/* ({column.cardIds.length}) */}
-            </span>
           </div>
         )}
       </div>
       <div className={styles.columnBody}>
+        <div className={styles.progressBar}>
+          <div
+            className={styles.cardProgressBar}
+            style={{
+              "--progress": `${((column.cardIds.length / 6) * 100)}%`,
+            }}
+          />
+          <div className={styles.cardNumber}>6/{column.cardIds.length}</div>
+        </div>
         <button className={styles.addCardBtn} onClick={addCard}>
           + Add card
         </button>

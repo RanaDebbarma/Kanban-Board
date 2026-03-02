@@ -14,6 +14,22 @@ export default function Card({ card }) {
 
   const textAreaRef = useRef(null);
 
+  const [showCardMenu, setShowCardMenu] = useState(false);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setShowCardMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+  
   useEffect(() => {
     if (textAreaRef.current) {
       textAreaRef.current.style.height = "auto"; // reset
@@ -65,9 +81,7 @@ export default function Card({ card }) {
 
   return (
     <DraggableCard cardId={card.id} srcColumnId={card.columnId}>
-      <div
-        className={styles.cardBody}
-      >
+      <div className={styles.cardBody}>
         <div className={styles.cardStatus}>status: {card.status}</div>
         {/* TITLE */}
         <div className={styles.heading}>
@@ -87,8 +101,41 @@ export default function Card({ card }) {
               <div onClick={startTitleEdit}>{card.title}</div>
             )}
           </div>
-          <button className={styles.deleteCardBtn} onClick={deleteCard}>
-            ✕
+          <button
+            className={styles.cardMenuBtn}
+            onClick={() => setShowCardMenu(true)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#e3e3e3"
+            >
+              <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z" />
+            </svg>
+            <div
+              ref={menuRef}
+              className={`${styles.cardMenu} ${showCardMenu ? styles.showCardMenu : ""}`}
+            >
+              <div className={styles.deleteCardBtn} onClick={deleteCard}>
+                delete
+              </div>
+              <div className={styles.CardPriorityBtn} >
+                Priority:
+                <select name="" id="">
+                  <option value="low">
+                    low
+                  </option>
+                  <option value="mid">
+                    mid
+                  </option>
+                  <option value="high">
+                    high
+                  </option>
+                </select>
+              </div>
+            </div>
           </button>
         </div>
         {/* DESCRIPTION */}
