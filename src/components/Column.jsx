@@ -55,9 +55,9 @@ export default function Column({ stage, column, cards }) {
   };
 
   const borderMap = {
-    input: "2px solid var(--input)",
-    wip: "2px solid var(--wip)",
-    output: "2px solid var(--output)",
+    input: "1px solid var(--input)",
+    wip: "1px solid var(--wip)",
+    output: "1px solid var(--output)",
   }
 
   return (
@@ -65,7 +65,7 @@ export default function Column({ stage, column, cards }) {
       className={styles.column}
       data-column-id={column.id}
       style={{
-        border: borderMap[stage.id] || `2px solid var(--accent)`,
+        border: borderMap[stage.id] || `1px solid var(--accent)`,
       }}
     >
       <div className={styles.heading}>
@@ -90,7 +90,7 @@ export default function Column({ stage, column, cards }) {
             autoFocus
           />
         ) : (
-          <div className={styles.title} onClick={() => setIsEditing(true)}>
+          <div className={styles.title} onDoubleClick={() => setIsEditing(true)}>
             {column.title}
           </div>
         )}

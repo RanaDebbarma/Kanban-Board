@@ -1,21 +1,21 @@
 :root {
   --bg-main: #0e0f12;
-  --bg-column: #16191f;
-  --bg-card: hsl(227, 13%, 16%);
+  --bg-column: hsl(220, 17%, 8%);
+  --bg-card: hsl(224, 14%, 12%);
 
-  --text-primary: #e8edef;
+  --text-primary: hsl(197, 18%, 92%);
   --text-secondary: #8596ab;
 
   --accent: #00ffbb;
-  --border: #3f485e;
+  --border: hsl(223, 20%, 21%);
   
   --bg-stage: hsla(0, 0%, 100%, 0.08);
-  --bg-stage: var(--bg-card);
+  --bg-stage: var(--bg-column);
   /* --border: #4a5775; */
 
-  --input: hsl(0, 40%, 30%);
-  --wip: hsl(210, 60%, 30%);
-  --output: hsl(140, 60%, 25%);
+  --input: hsl(0, 50%, 40%);
+  --wip: hsl(210, 60%, 40%);
+  --output: hsl(140, 60%, 30%);
 }
 
 .boardBody {
@@ -26,10 +26,11 @@
 }
 
 .navBar {
-  background-color: var(--bg-card);
+  background-color: var(--bg-column);
+  border-bottom: 1px solid var(--border) ;
   color: var(--accent);
 
-  font-size: 1.6em;
+  font-size: 1.5rem;
   font-weight: 400;
 
   box-sizing: border-box;
@@ -40,6 +41,7 @@
   padding: 0px 20px;
   margin: 0px;
 
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -66,11 +68,12 @@
 
 .heading {
   color: var(--text-primary);
+  flex-shrink: 0;
   display: flex;
   align-items: center;
-  font-size: 1.6em;
+  font-size: 1.4rem;
   font-weight: 400;
-  height: 60px;
+  height: 52px;
   user-select: none;
 }
 
@@ -82,6 +85,7 @@
 
   font: inherit;
 
+  height: 100%;
   padding: 0;
   margin: 0;
 
@@ -101,7 +105,7 @@
   font-size: medium;
   font-weight: 500;
   padding-left: 12px;
-  padding-bottom: 8px;
+  padding-bottom: 12px;
   user-select: none;
 }
 
@@ -109,12 +113,13 @@
   display: flex;
   flex-direction: column;
   
-  padding: 8px;
+  padding: 12px;
+  padding-right: 4px;
   height: 100%;
   
   box-sizing: border-box;
   
   background-color: var(--bg-stage);
-  border: 1px solid var(--bg-stage);
-  border-radius: 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
 }
