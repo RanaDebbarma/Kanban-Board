@@ -24,4 +24,4 @@ I made this project for learning purpose, so right now i only plan to implement 
 
 ## Work is still in progress
 
-Currently working on Polishing UI and may be some ui design upgrades
+Currently working on Polishing UI and Nav bar

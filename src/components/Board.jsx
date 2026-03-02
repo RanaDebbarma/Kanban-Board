@@ -1,11 +1,11 @@
 import useBoard from "../hooks/useBoard";
 import Stage from "./Stage";
 import styles from "./Board.module.css";
-// import { useState } from "react";
+import { useState } from "react";
 
 export default function Board() {
   const { state, dispatch } = useBoard();
-  // const [ darkMode, setDarkMode ] = useState(false);
+  const [showContact, setShowContact] = useState(false);
 
   function renderStages() {
     return state.stageOrder.map((stageId) => {
@@ -14,9 +14,9 @@ export default function Board() {
       const cards = state.cards;
 
       const borderMap = {
-        input: "1px solid var(--input)",
-        wip: "1px solid var(--wip)",
-        output: "1px solid var(--output)",
+        input: "var(--input)",
+        wip: "var(--wip)",
+        output: "var(--output)",
       };
 
       return (
@@ -24,7 +24,7 @@ export default function Board() {
           key={stageId}
           className={styles.stage}
           style={{
-            border: borderMap[stage.id] || `1px solid var(--border)`,
+            "--stage-border": borderMap[stage.id],
           }}
         >
           <label className={styles.StageHeading}>{stage.title}</label>
@@ -45,7 +45,19 @@ export default function Board() {
     <div className={styles.boardBody}>
       <div className={styles.navBar}>
         <div className={styles.navHeading}>Kanban-board</div>
-        <div> contact </div>
+        <div
+          className={styles.contact}
+          onClick={() => setShowContact((prev) => !prev)}
+        >
+          contact
+        </div>
+      </div>
+      <div
+        className={`${styles.contactDetails} ${
+          showContact ? styles.showContactDetails : ""
+        }`}
+      >
+        email: ranadebbarma2001@gmail.com
       </div>
       <div className={styles.workingArea}>
         <nav className={styles.heading}>

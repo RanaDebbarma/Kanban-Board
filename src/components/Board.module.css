@@ -8,12 +8,12 @@
 
   --accent: #00ffbb;
   --border: hsl(223, 20%, 21%);
-  
-  --bg-stage: hsla(0, 0%, 100%, 0.08);
-  --bg-stage: var(--bg-column);
-  /* --border: #4a5775; */
 
-  --input: hsl(0, 50%, 30%);
+  --bg-stage: hsla(0, 0%, 100%, 0.08);
+  --bg-stage: var(--bg-main);
+  /* --bg-stage: rgba(255, 255, 255, 0.01); */
+
+  --input: hsl(0, 50%, 40%);
   --wip: hsl(210, 60%, 30%);
   --output: hsl(140, 60%, 30%);
 }
@@ -27,7 +27,7 @@
 
 .navBar {
   background-color: var(--bg-column);
-  border-bottom: 1px solid var(--border) ;
+  border-bottom: 1px solid var(--border);
   color: var(--accent);
 
   font-size: 1.5rem;
@@ -47,13 +47,14 @@
   justify-content: space-between;
   gap: 12px;
 
+  z-index: 10;
   user-select: none;
 }
 
 .workingArea {
   box-sizing: border-box;
   background-color: var(--bg-main);
-  
+
   width: 100%;
   padding: 20px;
   padding-top: 0px;
@@ -98,6 +99,7 @@
   width: fit-content;
   display: flex;
   gap: 12px;
+  align-items: flex-start;
 }
 
 .StageHeading {
@@ -109,17 +111,80 @@
   user-select: none;
 }
 
-.stage {
-  display: flex;
-  flex-direction: column;
-  
-  padding: 12px;
-  padding-right: 4px;
+.contact {
   height: 100%;
   
-  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
-  background-color: var(--bg-stage);
+  padding: 0px 20px;
+
+  transition: 0.3s ease;
+}
+
+.contact:hover {
+  background-color: var(--bg-main);
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+.contactDetails {
+  background-color: var(--bg-column);
   border: 1px solid var(--border);
-  border-radius: 4px;
+  color: var(--text-primary);
+  
+  border-top: none;
+  
+  position: absolute;
+  top: -10px;
+  right: 0;
+  
+  width: fit-content;
+  padding: 20px;
+
+  z-index: 5;
+  transition: transform 0.3s ease;
+}
+
+.showContactDetails {
+  transform: translateY(calc(-10px + 10px + 60px));
+}
+
+.stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  padding: 12px;
+  padding-right: 4px;
+  padding-bottom: 52px;
+  height: auto;
+
+  box-sizing: border-box;
+
+  background-color: var(--bg-stage);
+
+  background:
+    linear-gradient(var(--stage-border), var(--stage-border) 50%) 
+      left 0px top 0px 
+      / 1px 69%
+      no-repeat,
+    linear-gradient(to right, var(--stage-border), var(--stage-border) 50%) 
+      left 0px top 0px 
+      / 69% 1px 
+      no-repeat
+
+    /* linear-gradient(var(--stage-border), var(--stage-border) 50%) 
+      right 0px bottom 0px 
+      / 1px 30%
+      no-repeat,
+    linear-gradient(to right, var(--stage-border), var(--stage-border) 50%) 
+      right 0px bottom 0px 
+      / 30% 1px 
+      no-repeat */
+  ;
+  
+  /* border: 1px solid var(--border); */
+  /* border-radius: 6px; */
 }
