@@ -101,7 +101,7 @@
 }
 
 .StageHeading {
-  color: var(--stage-border);
+  color: var(--stage-color);
   font-size: medium;
   font-weight: 500;
   padding-left: 12px;
@@ -128,9 +128,9 @@
 }
 
 .contactDetails {
-  background-color: var(--bg-column);
+  background-color: var(--bg-stage);
   border: 1px solid var(--border);
-  color: var(--text-primary);
+  color: var(--accent);
   
   border-top: none;
   

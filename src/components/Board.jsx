@@ -24,7 +24,7 @@ export default function Board() {
           key={stageId}
           className={styles.stage}
           style={{
-            "--stage-border": borderMap[stage.id],
+            "--stage-color": borderMap[stage.id],
           }}
         >
           <label className={styles.StageHeading}>{stage.title}</label>
