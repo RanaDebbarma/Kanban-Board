@@ -42,6 +42,7 @@ const initialState = {
       title: "Backlog",
       stageId: "input",
       cardIds: ["test"],
+      cardLimit: 5,
       isDefault: true,
     },
     doing: {
@@ -49,6 +50,7 @@ const initialState = {
       title: "Doing",
       stageId: "wip",
       cardIds: [],
+      cardLimit: 5,
       isDefault: true,
     },
     done: {
@@ -56,6 +58,7 @@ const initialState = {
       title: "Done",
       stageId: "output",
       cardIds: [],
+      cardLimit: 5,
       isDefault: true,
     },
   },

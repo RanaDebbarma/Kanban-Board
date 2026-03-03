@@ -20,9 +20,10 @@ export default function boardReducer(state, action) {
           ...state.columns,
           [newId]: {
             id: newId,
-            title: "New column",
+            title: "new column",
             stageId,
             cardIds: [],
+            cardLimit: 5,
             isDefault: false,
           },
         },
@@ -42,7 +43,10 @@ export default function boardReducer(state, action) {
 
       const column = state.columns[columnId];
 
-      if (column.isDefault) return state;
+      if (column.isDefault) {
+        alert("Can't delete default column!");
+        return state;
+      }
 
       const stageId = column.stageId;
 
@@ -66,8 +70,8 @@ export default function boardReducer(state, action) {
       };
     }
 
-    case "UPDATE_COLUMN_TITLE": {
-      const { columnId, newTitle } = action.payload;
+    case "UPDATE_COLUMN": {
+      const { columnId, newTitle, newCardLimit } = action.payload;
 
       // updating card status
       const column = state.columns[columnId];
@@ -76,7 +80,7 @@ export default function boardReducer(state, action) {
       column.cardIds.forEach((cardId) => {
         newCards[cardId] = {
           ...newCards[cardId],
-          status: newTitle,
+          ...(newTitle && { status: newTitle }),
         };
       });
 
@@ -87,7 +91,8 @@ export default function boardReducer(state, action) {
           ...state.columns,
           [columnId]: {
             ...state.columns[columnId],
-            title: newTitle,
+            ...(newTitle && { title: newTitle }),
+            ...(newCardLimit && { cardLimit: newCardLimit }),
           },
         },
 
@@ -108,6 +113,11 @@ export default function boardReducer(state, action) {
         minute: "2-digit",
         hour12: true,
       });
+
+      if(state.columns[columnId].cardLimit <= state.columns[columnId].cardIds.length) {
+        alert("Card limit reached!");
+        return state;
+      }
 
       return {
         ...state,
@@ -205,7 +215,7 @@ export default function boardReducer(state, action) {
             status: state.columns[dstId].title,
           },
         },
-      }
+      };
     }
     default:
       return state;

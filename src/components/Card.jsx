@@ -122,7 +122,7 @@ export default function Card({ card }) {
                 DELETE CARD
               </div>
               <div className={styles.CardPriorityBtn}>
-                menu
+                card menu
               </div>
             </div>
           </button>

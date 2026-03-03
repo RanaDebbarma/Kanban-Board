@@ -27,7 +27,7 @@ export default function Board() {
             "--stage-color": borderMap[stage.id],
           }}
         >
-          <label className={styles.StageHeading}>{stage.title}</label>
+          <div className={styles.StageHeading}>{stage.title}</div>
           <div className={styles.stageBody}>
             <Stage
               key={stageId}

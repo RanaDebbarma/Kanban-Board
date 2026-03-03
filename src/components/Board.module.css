@@ -11,11 +11,19 @@
 
   --bg-stage: hsl(220, 17%, 2%);
 
-  --input: hsl(0, 80%, 65%);
+  --input: hsl(20, 70%, 52%);
   --wip: hsl(210, 100%, 60%);
   --output: hsl(140, 90%, 60%);
 
+  --limit-full: hsl(0, 100%, 50%);
   --progress: 30%;
+
+  --scrollbar-color: var(--bg-card);
+}
+
+body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-color) transparent;
 }
 
 .boardBody {
@@ -66,6 +74,13 @@
 
   user-select: none;
 }
+
+/* ::-webkit-scrollbar-track {
+  background-color: var(--bg-card);
+}
+::-webkit-scrollbar-thumb {
+
+} */
 
 .heading {
   color: var(--text-primary);

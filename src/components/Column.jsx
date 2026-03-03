@@ -56,7 +56,7 @@ export default function Column({ column, cards }) {
   const saveTitle = () => {
     if (title.trim() === "") return;
     dispatch({
-      type: "UPDATE_COLUMN_TITLE",
+      type: "UPDATE_COLUMN",
       payload: { columnId: column.id, newTitle: title.trim() },
     });
     setTitle(title.trim());
@@ -67,6 +67,13 @@ export default function Column({ column, cards }) {
     dispatch({
       type: "ADD_CARDS",
       payload: { columnId: column.id },
+    });
+  };
+
+  const updateCardLimit = (e) => {
+    dispatch({
+      type: "UPDATE_COLUMN",
+      payload: { columnId: column.id, newCardLimit: e.target.value },
     });
   };
 
@@ -82,11 +89,6 @@ export default function Column({ column, cards }) {
         <div
           className={styles.columnMenuBtn}
           onClick={() => setShowColumnMenu(true)}
-          style={{
-            ...(column.isDefault && {
-              visibility: "hidden",
-            }),
-          }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +106,21 @@ export default function Column({ column, cards }) {
             <div className={styles.deleteColumnBtn} onClick={deleteColumn}>
               DELETE COLUMN
             </div>
-            <div className={styles.wipLimitBtn}>card limit</div>
+            <div className={styles.wipLimitBtn} onClick={updateCardLimit}>
+              <label htmlFor="cardLimit">card limit: </label>
+              <input 
+                type="number" 
+                value={column.cardLimit} 
+                id="cardLimit"
+                min={1}
+                max={100}
+                onKeyDown="return false"
+                style={{
+                  caretColor: "transparent",
+                }}
+                onChange={updateCardLimit}
+                />
+            </div>
           </div>
         </div>
         {isEditing ? (
@@ -128,14 +144,25 @@ export default function Column({ column, cards }) {
         )}
       </div>
       <div className={styles.columnBody}>
-        <div className={styles.progressBar}>
+        <div
+          className={styles.progressBar}
+          style={{
+            "--stage-color": `${
+              column.cardLimit * 0.8 <= column.cardIds.length
+                ? "var(--limit-full)"
+                : ""
+            }`,
+          }}
+        >
           <div
             className={styles.cardProgressBar}
             style={{
-              "--progress": `${(column.cardIds.length / 6) * 100}%`,
+              "--progress": `${(column.cardIds.length / column.cardLimit) * 100}%`,
             }}
           />
-          <div className={styles.cardNumber}>{column.cardIds.length}/6</div>
+          <div className={styles.cardNumber}>
+            {column.cardIds.length}/{column.cardLimit}
+          </div>
         </div>
         <button className={styles.addCardBtn} onClick={addCard}>
           <svg

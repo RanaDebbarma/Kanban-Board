@@ -38,15 +38,16 @@
 .progressBar {
   color: var(--stage-color);
   width: 100%;
-
+  
   display: flex;
   align-items: center;
   gap: 20px;
-
+  
   margin-bottom: 4px;
 }
 
 .cardNumber {
+  color: var(--stage-color);
   flex-shrink: 0;
 }
 
@@ -117,11 +118,12 @@
   z-index: 900;
 
   scale: 0;
-  transition: 0.3s ease;
+  transition: 0.15s ease;
 }
 
 .showColumnMenu {
   scale: 1;
+  cursor: default;
 }
 
 .deleteColumnBtn {
@@ -151,9 +153,15 @@
   padding: 8px 16px;
   display: flex;
   justify-content: center;
-  gap: 4px;
+  gap: 12px;
 }
 
+.wipLimitBtn input {
+  width: 40px;
+  height: fit-content;
+  background-color: var(--bg-column);
+  cursor: pointer;
+}
 
 .columnBody .addCardBtn {
   background-color: transparent;
