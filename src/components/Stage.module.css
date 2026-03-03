@@ -3,7 +3,7 @@
   display: flex;
   align-items: flex-start; /**/
   gap: 2px;
-  height: 100%;
+  /* height: 100%; */
 }
 
 .columns .addColumnBtn {
@@ -26,6 +26,11 @@
 }
 
 .columns .addColumnBtn:hover {
-  background-color: hsl(220, 17%, 8%);
+  background-color: var(--bg-card);
+;
   cursor: pointer;
+}
+
+.columns .addColumnBtn svg {
+  fill: var(--text-secondary);
 }

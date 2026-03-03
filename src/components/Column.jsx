@@ -99,13 +99,22 @@ export default function Column({ column, cards }) {
           <div
             className={styles.cardProgressBar}
             style={{
-              "--progress": `${((column.cardIds.length / 6) * 100)}%`,
+              "--progress": `${(column.cardIds.length / 6) * 100}%`,
             }}
           />
           <div className={styles.cardNumber}>{column.cardIds.length}/6</div>
         </div>
         <button className={styles.addCardBtn} onClick={addCard}>
-          + Add card
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="20px"
+            fill="#e3e3e3"
+          >
+            <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
+          </svg>
+          Add card
         </button>
         <div className={styles.cards}>{renderCards()}</div>
       </div>

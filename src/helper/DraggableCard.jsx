@@ -109,7 +109,7 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
 
         ...(isDragging
           ? {
-              boxShadow: "0px 4px 8px hsl(0, 0%, 0%, 0.5)",
+              boxShadow: "0px 4px 8px hsl(0, 0%, 0%, 0.4)",
               cursor: "grabbing",
             }
           : {}),

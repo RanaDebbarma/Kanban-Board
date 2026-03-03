@@ -14,7 +14,7 @@
 }
 
 .cardBody:hover {
-  box-shadow: 0px 0px 4px var(--accent);
+  box-shadow: 0px 0px 2px var(--accent);
   translate: 0px -4px;
 }
 
@@ -73,6 +73,8 @@
   right: -8px;
 
   background-color: var(--bg-column);
+  border: 1px solid var(--border);
+  box-shadow: 0px 4px 8px rgb(0, 0, 0, 0.4);
   border-radius: 8px;
   
   box-sizing: border-box;

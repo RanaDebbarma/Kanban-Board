@@ -43,7 +43,7 @@
   align-items: center;
   gap: 20px;
 
-  margin-bottom: 12px;
+  margin-bottom: 4px;
 }
 
 .cardNumber {
@@ -91,7 +91,7 @@
 .columnBody .addCardBtn {
   background-color: transparent;
   color: var(--text-secondary);
-  font-size: 1em;
+  font-size: 1rem;
 
   display: flex;
   justify-content: center;
@@ -106,8 +106,13 @@
 }
 
 .columnBody .addCardBtn:hover {
-  background-color: hsla(0, 0%, 100%, 0.08);
+  background-color: var(--bg-card);
   cursor: pointer;
+}
+
+.columnBody .addCardBtn svg {
+  fill: var(--text-secondary);
+  margin-right: 4px;
 }
 
 .columnBody {
