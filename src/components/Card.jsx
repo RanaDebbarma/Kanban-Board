@@ -29,7 +29,7 @@ export default function Card({ card }) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  
+
   useEffect(() => {
     if (textAreaRef.current) {
       textAreaRef.current.style.height = "auto"; // reset
@@ -119,21 +119,10 @@ export default function Card({ card }) {
               className={`${styles.cardMenu} ${showCardMenu ? styles.showCardMenu : ""}`}
             >
               <div className={styles.deleteCardBtn} onClick={deleteCard}>
-                delete
+                DELETE CARD
               </div>
-              <div className={styles.CardPriorityBtn} >
-                Priority:
-                <select name="" id="">
-                  <option value="low">
-                    low
-                  </option>
-                  <option value="mid">
-                    mid
-                  </option>
-                  <option value="high">
-                    high
-                  </option>
-                </select>
+              <div className={styles.CardPriorityBtn}>
+                menu
               </div>
             </div>
           </button>

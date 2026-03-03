@@ -57,7 +57,7 @@ export default function Board() {
           showContact ? styles.showContactDetails : ""
         }`}
       >
-        email: ranadebbarma2001@gmail.com
+        E-mail: ranadebbarma2001@gmail.com
       </div>
       <div className={styles.workingArea}>
         <nav className={styles.heading}>
