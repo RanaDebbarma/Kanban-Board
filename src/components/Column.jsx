@@ -103,9 +103,6 @@ export default function Column({ column, cards }) {
             ref={menuRef}
             className={`${styles.columnMenu} ${showColumnMenu ? styles.showColumnMenu : ""}`}
           >
-            <div className={styles.deleteColumnBtn} onClick={deleteColumn}>
-              DELETE COLUMN
-            </div>
             <div className={styles.wipLimitBtn} onClick={updateCardLimit}>
               <label htmlFor="cardLimit">card limit: </label>
               <input 
@@ -114,12 +111,16 @@ export default function Column({ column, cards }) {
                 id="cardLimit"
                 min={1}
                 max={100}
-                onKeyDown="return false"
+                onKeyDown={() => {return false}}
                 style={{
                   caretColor: "transparent",
                 }}
                 onChange={updateCardLimit}
                 />
+            </div>
+            <hr />
+            <div className={styles.deleteColumnBtn} onClick={deleteColumn}>
+              DELETE COLUMN
             </div>
           </div>
         </div>
@@ -148,8 +149,8 @@ export default function Column({ column, cards }) {
           className={styles.progressBar}
           style={{
             "--stage-color": `${
-              column.cardLimit * 0.8 <= column.cardIds.length
-                ? "var(--limit-full)"
+              (column.cardLimit * 0.8) <= column.cardIds.length
+                ? "var(--alert)"
                 : ""
             }`,
           }}

@@ -35,5 +35,5 @@
   fill: var(--text-secondary);
 }
 .columns .addColumnBtn svg:hover {
-  fill: var(--text-primary);
+  fill: var(--accent);
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import useBoard from "../hooks/useBoard";
-import DraggableCard from "../helper/DraggableCard";
+import DraggableCard from "./DraggableCard";
 import styles from "./Card.module.css";
 
 export default function Card({ card }) {
@@ -82,7 +82,35 @@ export default function Card({ card }) {
   return (
     <DraggableCard cardId={card.id} srcColumnId={card.columnId}>
       <div className={styles.cardBody}>
-        <div className={styles.cardStatus}>status: {card.status}</div>
+        <div className={styles.cardHeader}>
+          <div className={styles.cardStatus}>STATUS: {card.status}</div>
+          {/* <input type="color" name="" id="" /> */}
+          <button
+            className={styles.cardMenuBtn}
+            onClick={() => setShowCardMenu(true)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#e3e3e3"
+            >
+              <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z" />
+            </svg>
+            <div
+              ref={menuRef}
+              className={`${styles.cardMenu} ${showCardMenu ? styles.showCardMenu : ""}`}
+            >
+              <div className={styles.CardPriorityBtn}>card menu</div>
+              <hr />
+              <div className={styles.deleteCardBtn} onClick={deleteCard}>
+                DELETE CARD
+              </div>
+            </div>
+          </button>
+        </div>
+        <hr />
         {/* TITLE */}
         <div className={styles.heading}>
           <div className={styles.title}>
@@ -101,31 +129,6 @@ export default function Card({ card }) {
               <div onClick={startTitleEdit}>{card.title}</div>
             )}
           </div>
-          <button
-            className={styles.cardMenuBtn}
-            onClick={() => setShowCardMenu(true)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="24px"
-              viewBox="0 -960 960 960"
-              width="24px"
-              fill="#e3e3e3"
-            >
-              <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z" />
-            </svg>
-            <div
-              ref={menuRef}
-              className={`${styles.cardMenu} ${showCardMenu ? styles.showCardMenu : ""}`}
-            >
-              <div className={styles.deleteCardBtn} onClick={deleteCard}>
-                DELETE CARD
-              </div>
-              <div className={styles.CardPriorityBtn}>
-                card menu
-              </div>
-            </div>
-          </button>
         </div>
         {/* DESCRIPTION */}
         <div className={styles.description}>
@@ -154,7 +157,11 @@ export default function Card({ card }) {
             </div>
           )}
         </div>
-        <div className={styles.cardDate}>{card.date}</div>
+        <hr />
+        <div className={styles.cardFooter}>
+          <div className={styles.cardDate}>{card.date}</div>
+          <input type="color" name="" id="" />
+        </div>
       </div>
     </DraggableCard>
   );
