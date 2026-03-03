@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useBoard from "../hooks/useBoard";
 import Card from "./Card";
 import styles from "./Column.module.css";
@@ -7,6 +7,22 @@ export default function Column({ column, cards }) {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(column.title);
   const { dispatch } = useBoard();
+
+  const [showColumnMenu, setShowColumnMenu] = useState(false);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setShowColumnMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   function renderCards() {
     return column.cardIds.map((cardId) => {
@@ -63,17 +79,34 @@ export default function Column({ column, cards }) {
       }}
     >
       <div className={styles.heading}>
-        <button
-          className={styles.deleteColumnBtn}
-          onClick={deleteColumn}
+        <div
+          className={styles.columnMenuBtn}
+          onClick={() => setShowColumnMenu(true)}
           style={{
             ...(column.isDefault && {
               visibility: "hidden",
             }),
           }}
         >
-          ✕
-        </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="#e3e3e3"
+          >
+            <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z" />
+          </svg>
+          <div
+            ref={menuRef}
+            className={`${styles.columnMenu} ${showColumnMenu ? styles.showColumnMenu : ""}`}
+          >
+            <div className={styles.deleteColumnBtn} onClick={deleteColumn}>
+              DELETE COLUMN
+            </div>
+            <div className={styles.wipLimitBtn}>card limit</div>
+          </div>
+        </div>
         {isEditing ? (
           <div>
             <input
@@ -114,7 +147,7 @@ export default function Column({ column, cards }) {
           >
             <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
           </svg>
-          Add card
+          ADD CARD
         </button>
         <div className={styles.cards}>{renderCards()}</div>
       </div>

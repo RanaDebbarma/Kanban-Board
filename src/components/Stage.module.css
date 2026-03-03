@@ -8,8 +8,8 @@
 
 .columns .addColumnBtn {
   border-radius: 4px;
-  height: 100%;
-  width: 28px;
+  height: 36px;
+  width: 36px;
   margin-left: 2px;
   border: none;
 
@@ -33,4 +33,7 @@
 
 .columns .addColumnBtn svg {
   fill: var(--text-secondary);
+}
+.columns .addColumnBtn svg:hover {
+  fill: var(--text-primary);
 }
