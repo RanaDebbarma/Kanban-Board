@@ -18,34 +18,39 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
     // Don't start drag on interactive elements
     const isInteractive = e.target.closest("button, input, textarea");
     if (isInteractive) return;
-    
+
     lastPoint.current = {
       x: e.clientX,
       y: e.clientY,
     };
-    
-    if(e.pointerType === "touch") {
+
+    if (e.pointerType === "touch") {
       holdTimeout.current = setTimeout(() => {
         isPointerDown.current = true;
         setIsActive(true);
 
-        if(navigator.vibrate) {
+        if (navigator.vibrate) {
           navigator.vibrate(10);
         }
-      },500)
+      }, 500);
     } else {
       isPointerDown.current = true;
-    };
+    }
 
-    // e.currentTarget.setPointerCapture(e.pointerId);
+    e.currentTarget.setPointerCapture(e.pointerId);
   };
 
   const handlePointerMove = (e) => {
     if (!isPointerDown.current) {
-      // if finger moves before hold activates, cancel hold
-      if (holdTimeout.current) {
+      const dx = e.clientX - lastPoint.current.x;
+      const dy = e.clientY - lastPoint.current.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      // if finger moves more then 15px before hold activates, cancel hold
+      if (distance > 15) {
         clearTimeout(holdTimeout.current);
       }
+
       return;
     }
 
@@ -58,15 +63,13 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
 
       setIsDragging(true);
       setZIndex(999);
-      navigator.vibrate?.(5);
     }
 
     setPos((prev) => ({
       x: prev.x + dx,
       y: prev.y + dy,
     }));
-    
-    
+
     lastPoint.current = {
       x: e.clientX,
       y: e.clientY,
@@ -82,20 +85,19 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
         type: "SET_HOVERED_COLUMN",
         payload: {
           hoverColumnId: destColumn.dataset.columnId,
-         },
+        },
       });
     }
   };
 
   const handlePointerUp = (e) => {
-
     clearTimeout(holdTimeout.current);
     setIsActive(false);
-    
+
     if (!isPointerDown.current) return;
     isPointerDown.current = false;
 
-    // e.currentTarget.releasePointerCapture(e.pointerId);
+    e.currentTarget.releasePointerCapture(e.pointerId);
 
     if (!isDragging) return;
 
@@ -121,11 +123,11 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
     }
 
     dispatch({
-        type: "SET_HOVERED_COLUMN",
-        payload: {
-          hoverColumnId: null,
-         },
-      });
+      type: "SET_HOVERED_COLUMN",
+      payload: {
+        hoverColumnId: null,
+      },
+    });
 
     // Reset position
     setPos({ x: 0, y: 0 });
