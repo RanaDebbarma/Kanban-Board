@@ -73,7 +73,10 @@ const initialState = {
       date: date(),
     },
   },
+
   stageOrder: ["input", "wip", "output"],
+
+  hoveredColumn: null,
 };
 
 const init = (initialState) => {

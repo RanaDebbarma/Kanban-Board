@@ -6,7 +6,7 @@ import styles from "./Column.module.css";
 export default function Column({ column, cards }) {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(column.title);
-  const { dispatch } = useBoard();
+  const { state, dispatch } = useBoard();
 
   const [showColumnMenu, setShowColumnMenu] = useState(false);
   const menuRef = useRef(null);
@@ -79,11 +79,8 @@ export default function Column({ column, cards }) {
 
   return (
     <div
-      className={styles.column}
+      className={`${styles.column} ${state.hoveredColumn === column.id ? styles.columnGlow : ""}`}
       data-column-id={column.id}
-      style={{
-        border: `1px solid var(--border)`,
-      }}
     >
       <div className={styles.heading}>
         <div
@@ -105,18 +102,20 @@ export default function Column({ column, cards }) {
           >
             <div className={styles.wipLimitBtn} onClick={updateCardLimit}>
               <label htmlFor="cardLimit">card limit: </label>
-              <input 
-                type="number" 
-                value={column.cardLimit} 
+              <input
+                type="number"
+                value={column.cardLimit}
                 id="cardLimit"
                 min={1}
                 max={100}
-                onKeyDown={() => {return false}}
+                onKeyDown={() => {
+                  return false;
+                }}
                 style={{
                   caretColor: "transparent",
                 }}
                 onChange={updateCardLimit}
-                />
+              />
             </div>
             <hr />
             <div className={styles.deleteColumnBtn} onClick={deleteColumn}>
@@ -149,7 +148,7 @@ export default function Column({ column, cards }) {
           className={styles.progressBar}
           style={{
             "--stage-color": `${
-              (column.cardLimit * 0.8) <= column.cardIds.length
+              column.cardLimit * 0.8 <= column.cardIds.length
                 ? "var(--alert)"
                 : ""
             }`,

@@ -217,6 +217,16 @@ export default function boardReducer(state, action) {
         },
       };
     }
+
+    case "SET_HOVERED_COLUMN": {
+      const { hoverColumnId } = action.payload;
+
+      return {
+        ...state,
+        hoveredColumn: hoverColumnId,
+      };
+    }
+
     default:
       return state;
   }

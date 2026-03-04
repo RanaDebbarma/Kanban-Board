@@ -16,7 +16,7 @@
 }
 
 .cardBody:hover {
-  border: 1px solid var(--accent);
+  border: 1px solid var(--glow);
   translate: 0px -4px;
 }
 

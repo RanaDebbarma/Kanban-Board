@@ -10,8 +10,14 @@
   padding-bottom: 52px;
 
   background-color: var(--bg-column);
+  border: 1px solid var(--border);
 
   box-shadow: inset 0px 0px 12px hsla(0, 0%, 0%, 0.4);
+  transition: 0.3s ease;
+}
+
+.columnGlow {
+  border: 1px solid var(--glow);
 }
 
 .heading {

@@ -14,11 +14,12 @@
   --bg-stage: hsl(220, 17%, 2%);
   --bg-menu: rgba(0, 0, 0, 0.5);
   --blur: blur(5px);
-
+  
   --input: hsl(20, 80%, 55%);
   --wip: hsl(210, 100%, 55%);
   --output: hsl(140, 80%, 55%);
-
+  
+  --glow: hsl(164, 100%, 50%, 0.6);
   --alert: hsl(0, 100%, 60%);
 
   --progress-bar-thickness: 1px;

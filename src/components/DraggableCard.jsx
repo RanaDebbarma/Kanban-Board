@@ -45,11 +45,26 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
       x: prev.x + dx,
       y: prev.y + dy,
     }));
-
+    
+    
     lastPoint.current = {
       x: e.clientX,
       y: e.clientY,
     };
+
+    cardRef.current.style.pointerEvents = "none";
+    const element = document.elementFromPoint(e.clientX, e.clientY);
+    const destColumn = element?.closest("[data-column-id]");
+    cardRef.current.style.pointerEvents = "auto";
+
+    if (destColumn) {
+      dispatch({
+        type: "SET_HOVERED_COLUMN",
+        payload: {
+          hoverColumnId: destColumn.dataset.columnId,
+         },
+      });
+    }
   };
 
   const handlePointerUp = (e) => {
@@ -66,7 +81,6 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
 
     cardRef.current.style.pointerEvents = "none";
     const element = document.elementFromPoint(e.clientX, e.clientY);
-
     const destColumn = element?.closest("[data-column-id]");
     cardRef.current.style.pointerEvents = "auto";
 
@@ -83,6 +97,13 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
       // console.log("source: ", srcColumnId);
       // console.log("destination: ", destColumn.dataset.columnId);
     }
+
+    dispatch({
+        type: "SET_HOVERED_COLUMN",
+        payload: {
+          hoverColumnId: null,
+         },
+      });
 
     // Reset position
     setPos({ x: 0, y: 0 });
