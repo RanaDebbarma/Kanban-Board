@@ -11,8 +11,6 @@ export default function Column({ column, cards }) {
   const [showColumnMenu, setShowColumnMenu] = useState(false);
   const menuRef = useRef(null);
 
-  const testRef = useRef(null);
-
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
@@ -91,7 +89,6 @@ export default function Column({ column, cards }) {
 
   return (
     <div
-      ref={testRef}
       className={`
         ${styles.column} 
         

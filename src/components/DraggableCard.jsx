@@ -7,7 +7,9 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [zIndex, setZIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
+  const holdTimeout = useRef(null);
   const isPointerDown = useRef(false);
   const lastPoint = useRef({ x: 0, y: 0 });
   const cardRef = useRef(null);
@@ -17,18 +19,35 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
     const isInteractive = e.target.closest("button, input, textarea");
     if (isInteractive) return;
     
-    isPointerDown.current = true;
-
     lastPoint.current = {
       x: e.clientX,
       y: e.clientY,
+    };
+    
+    if(e.pointerType === "touch") {
+      holdTimeout.current = setTimeout(() => {
+        isPointerDown.current = true;
+        setIsActive(true);
+
+        if(navigator.vibrate) {
+          navigator.vibrate(10);
+        }
+      },500)
+    } else {
+      isPointerDown.current = true;
     };
 
     // e.currentTarget.setPointerCapture(e.pointerId);
   };
 
   const handlePointerMove = (e) => {
-    if (!isPointerDown.current) return;
+    if (!isPointerDown.current) {
+      // if finger moves before hold activates, cancel hold
+      if (holdTimeout.current) {
+        clearTimeout(holdTimeout.current);
+      }
+      return;
+    }
 
     const dx = e.clientX - lastPoint.current.x;
     const dy = e.clientY - lastPoint.current.y;
@@ -39,6 +58,7 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
 
       setIsDragging(true);
       setZIndex(999);
+      navigator.vibrate?.(5);
     }
 
     setPos((prev) => ({
@@ -68,9 +88,11 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
   };
 
   const handlePointerUp = (e) => {
+
+    clearTimeout(holdTimeout.current);
+    setIsActive(false);
     
     if (!isPointerDown.current) return;
-    
     isPointerDown.current = false;
 
     // e.currentTarget.releasePointerCapture(e.pointerId);
@@ -120,7 +142,7 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
         width: "100%",
         transform: `
           translate(${pos.x}px, ${pos.y}px)
-          ${isDragging ? "scale(1.09)" : "scale(1)"}
+          ${isActive ? "scale(1.09)" : "scale(1)"}
         `,
 
         zIndex: zIndex,
