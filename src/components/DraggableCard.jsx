@@ -14,41 +14,36 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
   const lastPoint = useRef({ x: 0, y: 0 });
   const cardRef = useRef(null);
 
-  const handlePointerDown = (e) => {
-    // Don't start drag on interactive elements
-    const isInteractive = e.target.closest("button, input, textarea");
-    if (isInteractive) return;
+  /* -------------------- POINTER DOWN -------------------- */
 
-    lastPoint.current = {
-      x: e.clientX,
-      y: e.clientY,
-    };
+  const handlePointerDown = (e) => {
+    if (e.target.closest("button, input, textarea")) return;
+
+    lastPoint.current = { x: e.clientX, y: e.clientY };
 
     if (e.pointerType === "touch") {
       holdTimeout.current = setTimeout(() => {
         isPointerDown.current = true;
         setIsActive(true);
 
-        if (navigator.vibrate) {
-          navigator.vibrate(10);
-        }
+        if (navigator.vibrate) navigator.vibrate(10);
       }, 500);
     } else {
       isPointerDown.current = true;
     }
-
-    e.currentTarget.setPointerCapture(e.pointerId);
   };
+
+  /* -------------------- POINTER MOVE -------------------- */
 
   const handlePointerMove = (e) => {
     if (!isPointerDown.current) {
       const dx = e.clientX - lastPoint.current.x;
       const dy = e.clientY - lastPoint.current.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-      
-      // if finger moves more then 15px before hold activates, cancel hold
-      if (distance > 15) {
+      const distance = Math.hypot(dx, dy);
+
+      if (distance > 15 && holdTimeout.current) {
         clearTimeout(holdTimeout.current);
+        holdTimeout.current = null;
       }
 
       return;
@@ -58,7 +53,7 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
     const dy = e.clientY - lastPoint.current.y;
 
     if (!isDragging) {
-      const distance = Math.sqrt(dx * dx + dy * dy);
+      const distance = Math.hypot(dx, dy);
       if (distance < 5) return;
 
       setIsDragging(true);
@@ -70,11 +65,9 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
       y: prev.y + dy,
     }));
 
-    lastPoint.current = {
-      x: e.clientX,
-      y: e.clientY,
-    };
+    lastPoint.current = { x: e.clientX, y: e.clientY };
 
+    // Detect hovered column
     cardRef.current.style.pointerEvents = "none";
     const element = document.elementFromPoint(e.clientX, e.clientY);
     const destColumn = element?.closest("[data-column-id]");
@@ -90,14 +83,18 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
     }
   };
 
+  /* -------------------- POINTER UP -------------------- */
+
   const handlePointerUp = (e) => {
-    clearTimeout(holdTimeout.current);
+    if (holdTimeout.current) {
+      clearTimeout(holdTimeout.current);
+      holdTimeout.current = null;
+    }
+
     setIsActive(false);
 
     if (!isPointerDown.current) return;
     isPointerDown.current = false;
-
-    e.currentTarget.releasePointerCapture(e.pointerId);
 
     if (!isDragging) return;
 
@@ -112,27 +109,23 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
       dispatch({
         type: "MOVE_CARD",
         payload: {
-          cardId: cardId,
+          cardId,
           srcId: srcColumnId,
           dstId: destColumn.dataset.columnId,
         },
       });
-
-      // console.log("source: ", srcColumnId);
-      // console.log("destination: ", destColumn.dataset.columnId);
     }
 
     dispatch({
       type: "SET_HOVERED_COLUMN",
-      payload: {
-        hoverColumnId: null,
-      },
+      payload: { hoverColumnId: null },
     });
 
-    // Reset position
     setPos({ x: 0, y: 0 });
     setZIndex(0);
   };
+
+  /* -------------------- RENDER -------------------- */
 
   return (
     <div
@@ -142,22 +135,14 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
       onPointerUp={handlePointerUp}
       style={{
         width: "100%",
-        transform: `
-          translate(${pos.x}px, ${pos.y}px)
-          ${isActive ? "scale(1.09)" : "scale(1)"}
-        `,
-
-        zIndex: zIndex,
+        transform: `translate(${pos.x}px, ${pos.y}px) scale(${isActive || isDragging ? 1.09 : 1})`,
+        zIndex,
         touchAction: "none",
-
         transition: isDragging ? "none" : "transform 0.15s ease",
-
-        ...(isDragging
-          ? {
-              boxShadow: "0px 4px 12px hsl(0, 0%, 0%, 0.4)",
-              cursor: "grabbing",
-            }
-          : {}),
+        ...(isDragging && {
+          boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
+          cursor: "grabbing",
+        }),
       }}
     >
       {children}
