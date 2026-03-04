@@ -11,6 +11,8 @@ export default function Column({ column, cards }) {
   const [showColumnMenu, setShowColumnMenu] = useState(false);
   const menuRef = useRef(null);
 
+  const testRef = useRef(null);
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
@@ -77,9 +79,37 @@ export default function Column({ column, cards }) {
     });
   };
 
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setIsActive((prev) => !prev);
+    }, 600);
+
+    return () => clearInterval(intervalId);
+  }, [state.hoveredColumn]);
+
   return (
     <div
-      className={`${styles.column} ${state.hoveredColumn === column.id ? styles.columnGlow : ""}`}
+      ref={testRef}
+      className={`
+        ${styles.column} 
+        
+        ${state.hoveredColumn === column.id ? styles.columnGlow : ""}
+        
+        ${
+          isActive && state.hoveredColumn === column.id
+            ? styles.columnBreath
+            : ""
+        }
+      `}
+      style={{
+        ...(column.cardLimit * 0.8 <= column.cardIds.length
+          ? {
+              "--glow": "var(--alert)",
+            }
+          : {}),
+      }}
       data-column-id={column.id}
     >
       <div className={styles.heading}>
@@ -147,11 +177,12 @@ export default function Column({ column, cards }) {
         <div
           className={styles.progressBar}
           style={{
-            "--stage-color": `${
-              column.cardLimit * 0.8 <= column.cardIds.length
-                ? "var(--alert)"
-                : ""
-            }`,
+            ...(column.cardLimit * 0.8 <= column.cardIds.length
+              ? {
+                  "--stage-color": "var(--alert)",
+                  "--progress-bar-thickness": "2px",
+                }
+              : {}),
           }}
         >
           <div
@@ -176,7 +207,12 @@ export default function Column({ column, cards }) {
           </svg>
           ADD CARD
         </button>
-        <div className={styles.cards}>{renderCards()}</div>
+        <div 
+          className={styles.cards} 
+          style={{
+            "--glow": "hsl(164, 100%, 50%, 0.6)"
+            }}
+        >{renderCards()}</div>
       </div>
     </div>
   );

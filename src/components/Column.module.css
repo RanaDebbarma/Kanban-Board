@@ -1,5 +1,5 @@
 .column {
-  width: 302px;
+  width: 300px;
   min-height: 100px;
   height: auto;
 
@@ -13,11 +13,13 @@
   border: 1px solid var(--border);
 
   box-shadow: inset 0px 0px 12px hsla(0, 0%, 0%, 0.4);
-  transition: 0.3s ease;
+  transition: box-shadow 0.6s ease-in-out;
 }
-
 .columnGlow {
   border: 1px solid var(--glow);
+}
+.columnBreath {
+  box-shadow: inset 0px 0px 10px var(--glow);
 }
 
 .heading {
