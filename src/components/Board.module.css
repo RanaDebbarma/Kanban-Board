@@ -1,38 +1,3 @@
-:root {
-  --bg-main: #0e0f12;
-  --bg-column: hsl(220, 17%, 8%);
-  --bg-card: hsl(224, 14%, 12%);
-
-  --text-primary: hsl(197, 18%, 92%);
-  --text-secondary: #8596ab;
-
-  --accent: #00ffbb;
-  --border: hsl(223, 20%, 21%);
-
-  --shadow: 0 4px 12px rgba(0,0,0,0.4);
-
-  --bg-stage: hsl(220, 17%, 2%);
-  --bg-menu: rgba(0, 0, 0, 0.5);
-  --blur: blur(5px);
-  
-  --input: hsl(20, 80%, 55%);
-  --wip: hsl(210, 100%, 55%);
-  --output: hsl(140, 80%, 55%);
-  
-  --glow: hsl(164, 100%, 50%, 0.6);
-  --alert: hsl(0, 100%, 60%);
-
-  --progress-bar-thickness: 1px;
-  --progress: 30%;
-
-  --scrollbar-color: var(--bg-card);
-}
-
-body {
-  scrollbar-width: thin;
-  scrollbar-color: var(--scrollbar-color) transparent;
-}
-
 .boardBody {
   width: 100dvw;
   height: 100dvh;
@@ -66,7 +31,26 @@ body {
   user-select: none;
 }
 
+.workingAreaWrapper {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.settingsMenu svg {
+  fill: var(--text-primary);
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.settingsMenu:hover svg {
+  fill: var(--accent);
+}
+
 .workingArea {
+  position: relative;
+
   box-sizing: border-box;
   background-color: var(--bg-main);
 
@@ -81,13 +65,6 @@ body {
 
   user-select: none;
 }
-
-/* ::-webkit-scrollbar-track {
-  background-color: var(--bg-card);
-}
-::-webkit-scrollbar-thumb {
-
-} */
 
 .heading {
   color: var(--text-primary);
@@ -133,7 +110,7 @@ body {
   user-select: none;
 }
 
-.contact {
+/* .contact {
   height: 100%;
   
   display: flex;
@@ -174,7 +151,7 @@ body {
 
 .showContactDetails {
   transform: translateY(calc(-10px + 10px + 52px));
-}
+} */
 
 .stage {
   position: relative;
@@ -189,26 +166,6 @@ body {
   box-sizing: border-box;
 
   background-color: var(--bg-stage);
-
-  /* background:
-    linear-gradient(var(--stage-border), var(--stage-border) 50%) 
-      left 0px top 0px 
-      / 1px 69%
-      no-repeat,
-    linear-gradient(to right, var(--stage-border), var(--stage-border) 50%) 
-      left 0px top 0px 
-      / 69% 1px 
-      no-repeat */
-
-    /* linear-gradient(var(--stage-border), var(--stage-border) 50%) 
-      right 0px bottom 0px 
-      / 1px 30%
-      no-repeat,
-    linear-gradient(to right, var(--stage-border), var(--stage-border) 50%) 
-      right 0px bottom 0px 
-      / 30% 1px 
-      no-repeat */
-  ;
   
   border: 1px solid var(--border);
   border-radius: 6px;

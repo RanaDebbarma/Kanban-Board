@@ -1,14 +1,17 @@
-import Board from "./components/Board";
+import ThemeContextProvider from "./context/ThemeContextProvider";
 import BoardContextProvider from "./context/BoardContextProvider";
-import { Analytics } from '@vercel/analytics/react';
+import Board from "./components/Board";
+import { Analytics } from "@vercel/analytics/react";
 import "./App.css";
 
 function App() {
   return (
     <>
-      <BoardContextProvider>
-        <Board />
-      </BoardContextProvider>
+      <ThemeContextProvider>
+        <BoardContextProvider>
+          <Board />
+        </BoardContextProvider>
+      </ThemeContextProvider>
       <Analytics />
     </>
   );
