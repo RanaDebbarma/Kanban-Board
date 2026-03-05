@@ -3,7 +3,7 @@
   box-sizing: border-box;
   top: 0;
   right: 0;
-  backdrop-filter: var(--blur);
+  backdrop-filter: blur(10px);
   background-color: var(--bg-menu);
   border-left: 1px solid var(--border);
   color: var(--text-primary);
@@ -28,4 +28,41 @@
   width: 100%;
   border: none;
   background-color: var(--border);
+}
+
+.heading {
+  flex-shrink: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.compartment {
+  flex-grow: 1;
+  flex-shrink: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.footer {
+  flex-shrink: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer button {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: none;
+  outline: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.footer button:hover {
+  color: var(--accent);
 }
