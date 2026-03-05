@@ -205,10 +205,7 @@ export default function Column({ column, cards }) {
           ADD CARD
         </button>
         <div 
-          className={styles.cards} 
-          style={{
-            "--glow": "hsl(164, 100%, 50%, 0.6)"
-            }}
+          className={styles.cards}
         >{renderCards()}</div>
       </div>
     </div>

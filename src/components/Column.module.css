@@ -12,7 +12,7 @@
   background-color: var(--bg-column);
   border: 1px solid var(--border);
 
-  box-shadow: inset 0px 0px 12px hsla(0, 0%, 0%, 0.4);
+  box-shadow: inset var(--shadow);
   transition: box-shadow 0.6s ease-in-out;
 }
 .columnGlow {
@@ -113,7 +113,7 @@
   background-color: var(--bg-menu);
   backdrop-filter: var(--blur);
   border: 1px solid var(--border);
-  box-shadow: 0px 4px 8px rgb(0, 0, 0, 0.8);
+  box-shadow: var(--shadow);
   border-radius: 8px;
 
   box-sizing: border-box;
@@ -193,7 +193,7 @@
   height: 28px;
   width: 100%;
   padding: 4px;
-  border-radius: 4px;
+  border-radius: 8px;
   border: none;
   margin-bottom: 8px;
   transition: 0.3s ease;

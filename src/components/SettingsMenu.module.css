@@ -16,6 +16,11 @@
   flex-direction: column;
   align-items: center;
 
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  scrollbar-width: none;
+
   translate: 280px;
   transition: translate 0.3s ease;
 }
@@ -42,9 +47,8 @@
   flex-shrink: 0;
   width: 100%;
   display: flex;
-  justify-content: center;
-  overflow-x: hidden;
-  overflow-y: auto;
+  flex-direction: column;
+  align-items: center;
 }
 
 .footer {

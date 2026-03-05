@@ -23,7 +23,9 @@
   --accent: #00ffbb;
   --border: hsl(223, 20%, 21%);
 
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-rgb: 0, 0, 0;
+  --shadow-alpha: 0.4;
+  --shadow: 0 4px 10px rgba(var(--shadow-rgb), var(--shadow-alpha));
 
   --bg-stage: hsl(220, 17%, 2%);
   --bg-menu: rgba(0, 0, 0, 0.5);

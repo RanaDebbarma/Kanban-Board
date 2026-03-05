@@ -3,27 +3,30 @@ import { ThemeContext } from "./ThemeContext";
 import themeReducer from "../reducers/themeReducer";
 
 const initialState = {
-  activeTheme: ["default"],
-  
+  activeTheme: "default",
+
   themes: {
     default: {
-      "bg-main": "#0e0f12",
-      "bg-column": "hsl(220, 17%, 8%)",
-      "bg-card": "hsl(224, 14%, 12%)",
-      "text-primary": "hsl(197, 18%, 92%)",
-      "text-secondary": "#8596ab",
-      "accent": "#00ffbb",
-      "border": "hsl(223, 20%, 21%)",
-      "shadow": "0 4px 12px rgba(0,0,0,0.4)",
-      "bg-stage": "hsl(220, 17%, 2%)",
-      "bg-menu": "rgba(0, 0, 0, 0.5)",
-      "blur": "blur(5px)",
-      "input": "hsl(20, 80%, 55%)",
-      "wip": "hsl(210, 100%, 55%)",
-      "output": "hsl(140, 80%, 55%)",
-      "glow": "hsl(164, 100%, 50%, 0.6)",
-      "alert": "hsl(0, 100%, 60%)",
-      "scrollbar-color": "var(--bg-card)",
+      color: {
+        "bg-stage": "#040506",
+        "text-primary": "#e7ecee",
+        "text-secondary": "#8596ab",
+        "bg-main": "#0e0f12",
+        "bg-column": "#111318",
+        "bg-card": "#1a1d23",
+        border: "#2b3140",
+        accent: "#00ffbb",
+        input: "#e86e30",
+        wip: "#1a8cff",
+        output: "#30e86e",
+        alert: "#ff3333",
+      },
+      effects: {
+        "bg-menu": "#00000080",
+        "shadow-rgb": "0,0,0",
+        "shadow-alpha": 0.4,
+        "blur": "5px"
+      }
     },
   },
 };

@@ -1,38 +1,53 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import SettingColorPicker from "./SettingColorPicker";
 import useTheme from "../hooks/useTheme";
-import styles from "./Settings.module.css";
+import styles from "./SettingsMenu.module.css";
 
 export default function SettingsMenu({ showMenu }) {
   const { themeState } = useTheme();
+  const [draftTheme, setDraftTheme] = useState(
+    themeState.themes[themeState.activeTheme],
+  );
+
+  const handleChange = (key, value) => {
+    setDraftTheme((prev) => ({
+      ...prev,
+      color: {
+        ...prev.color,
+        [key]: value,
+      }
+    }));
+  };
 
   useEffect(() => {
-    const theme = themeState.themes[themeState.activeTheme];
-
-    Object.entries(theme).forEach(([key, value]) => {
+    Object.entries(draftTheme.color).forEach(([key, value]) => {
       document.documentElement.style.setProperty(`--${key}`, value);
     });
-
-  }, [themeState]);
+  }, [draftTheme.color]);
 
   return (
     <div
       className={`${styles.settingsMenu} ${showMenu && styles.showSettingsMenu}`}
     >
-      <div className={styles.heading}>
-        Settings
-      </div>
+      <div className={styles.heading}>Settings</div>
       <hr />
       <div className={styles.compartment}>
-        compartment
+        {Object.entries(draftTheme.color).map(([key, value]) => {
+          return (
+            <SettingColorPicker
+              key={key}
+              label={key}
+              value={value}
+              changeId={key}
+              onChange={handleChange}
+            />
+          );
+        })}
       </div>
       <hr />
       <div className={styles.footer}>
-        <button className={styles.resetBtn}>
-          reset
-        </button>
-        <button className={styles.saveBtn}>
-          save
-        </button>
+        <button className={styles.resetBtn}>reset</button>
+        <button className={styles.saveBtn}>save</button>
       </div>
     </div>
   );
