@@ -79,12 +79,21 @@ export default function Card({ card }) {
     });
   };
 
+  const changeCardColor = (newColorValue) => {
+    dispatch({
+      type: "UPDATE_CARD",
+      payload: {
+        cardId: card.id,
+        newColor: newColorValue,
+      },
+    });
+  };
+
   return (
     <DraggableCard cardId={card.id} srcColumnId={card.columnId}>
-      <div className={styles.cardBody}>
+      <div className={styles.cardBody} style={{backgroundColor: card.color}}>
         <div className={styles.cardHeader}>
           <div className={styles.cardStatus}>STATUS: {card.status}</div>
-          {/* <input type="color" name="" id="" /> */}
           <button
             className={styles.cardMenuBtn}
             onClick={() => setShowCardMenu(true)}
@@ -160,7 +169,13 @@ export default function Card({ card }) {
         <hr />
         <div className={styles.cardFooter}>
           <div className={styles.cardDate}>{card.date}</div>
-          <input type="color" name="" id="" />
+          <input
+            type="color"
+            name=""
+            id=""
+            value={card.color}
+            onChange={(e) => changeCardColor(e.target.value)}
+          />
         </div>
       </div>
     </DraggableCard>

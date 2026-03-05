@@ -177,7 +177,6 @@ export default function Column({ column, cards }) {
             ...(column.cardLimit * 0.8 <= column.cardIds.length
               ? {
                   "--stage-color": "var(--alert)",
-                  "--progress-bar-thickness": "2px",
                 }
               : {}),
           }}

@@ -70,6 +70,7 @@
 
   height: var(--progress-bar-thickness);
   width: 100%;
+  border-radius: 50px;
 }
 
 .heading input {
@@ -101,7 +102,7 @@
 .heading .columnMenuBtn svg {
   fill: var(--text-secondary);
 }
-.heading .columnMenuBtn svg:hover {
+.heading .columnMenuBtn:hover svg {
   fill: var(--accent);
 }
 

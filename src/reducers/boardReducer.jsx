@@ -167,7 +167,7 @@ export default function boardReducer(state, action) {
     }
 
     case "UPDATE_CARD": {
-      const { cardId, newTitle, newDescription } = action.payload;
+      const { cardId, newTitle, newColor, newDescription } = action.payload;
 
       return {
         ...state,
@@ -180,6 +180,7 @@ export default function boardReducer(state, action) {
             ...(newDescription !== undefined && {
               description: newDescription,
             }),
+            ...(newColor !== undefined && { color: newColor })
           },
         },
       };
