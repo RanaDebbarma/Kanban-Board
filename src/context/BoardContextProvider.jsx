@@ -72,6 +72,7 @@ const initialState = {
       columnId: "backlog",
       date: date(),
       color: "#1a1d24",
+      fill: false,
     },
   },
 

@@ -91,7 +91,14 @@ export default function Card({ card }) {
 
   return (
     <DraggableCard cardId={card.id} srcColumnId={card.columnId}>
-      <div className={styles.cardBody} style={{backgroundColor: card.color}}>
+      <div
+        className={styles.cardBody}
+        style={{
+          ...(card.fill && {
+            backgroundColor: card.color,
+          }),
+        }}
+      >
         <div className={styles.cardHeader}>
           <div className={styles.cardStatus}>STATUS: {card.status}</div>
           <button
@@ -169,10 +176,21 @@ export default function Card({ card }) {
         <hr />
         <div className={styles.cardFooter}>
           <div className={styles.cardDate}>{card.date}</div>
+          {/* <input
+            type="checkbox"
+            checked={card.fill}
+            onChange={(e) =>
+              dispatch({
+                type: "UPDATE_CARD",
+                payload: {
+                  cardId: card.id,
+                  fill: e.target.checked,
+                },
+              })
+            }
+          /> */}
           <input
             type="color"
-            name=""
-            id=""
             value={card.color}
             onChange={(e) => changeCardColor(e.target.value)}
           />

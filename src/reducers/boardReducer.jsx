@@ -131,6 +131,8 @@ export default function boardReducer(state, action) {
             date: date,
             status: state.columns[columnId].title,
             columnId: columnId,
+            color: "#1a1d24",
+            fill: false,
           },
         },
 
@@ -167,7 +169,7 @@ export default function boardReducer(state, action) {
     }
 
     case "UPDATE_CARD": {
-      const { cardId, newTitle, newColor, newDescription } = action.payload;
+      const { cardId, newTitle, newColor, fill, newDescription } = action.payload;
 
       return {
         ...state,
@@ -180,7 +182,8 @@ export default function boardReducer(state, action) {
             ...(newDescription !== undefined && {
               description: newDescription,
             }),
-            ...(newColor !== undefined && { color: newColor })
+            ...(newColor !== undefined && { color: newColor }),
+            ...(fill !== undefined && { fill: fill }),
           },
         },
       };

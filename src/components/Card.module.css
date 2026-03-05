@@ -78,7 +78,7 @@
 }
 
 .cardMenuBtn svg {
-  fill: var(--card-text-secondary);
+  fill: var(--text-secondary);
   cursor: pointer;
 }
 
@@ -125,7 +125,7 @@
 
 .deleteCardBtn {
   background-color: transparent;
-  color: var(--card-text-primary);
+  color: var(--text-primary);
 
   font-size: 0.8rem;
 
@@ -146,7 +146,7 @@
 
 .CardPriorityBtn {
   background-color: transparent;
-  color: var(--card-text-secondary);
+  color: var(--text-secondary);
   padding: 8px 16px;
   display: flex;
   justify-content: center;
@@ -211,6 +211,7 @@
 }
 
 .cardDate {
+  flex-grow: 1;
   color: var(--card-text-secondary);
   font-size: 0.75rem;
   user-select: none;
