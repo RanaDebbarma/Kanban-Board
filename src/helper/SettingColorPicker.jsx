@@ -1,13 +1,13 @@
 import styles from "./SettingColorPicker.module.css";
 
 export default function SettingColorPicker({
-  value,
   label,
+  value,
   changeId,
   onChange,
 }) {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.colorWrapper}>
       <label htmlFor={changeId}>{label} :</label>
       <input
         type="color"

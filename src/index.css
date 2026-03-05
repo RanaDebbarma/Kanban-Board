@@ -13,30 +13,37 @@
     "Helvetica Neue",
     sans-serif;
 
+  /*Color themes*/
+  --bg-navBar: hsl(220, 17%, 2%); 
+  --bg-stage: hsl(220, 17%, 2%);
+  --text-primary: hsl(197, 18%, 92%);
+  --text-secondary: #8596ab;
+  --card-text-primary: #e7ecee;
+  --card-text-secondary: #8596ab;
   --bg-main: #0e0f12;
   --bg-column: hsl(220, 17%, 8%);
   --bg-card: hsl(224, 14%, 12%);
-
-  --text-primary: hsl(197, 18%, 92%);
-  --text-secondary: #8596ab;
-
-  --accent: #00ffbb;
   --border: hsl(223, 20%, 21%);
+  --accent: #00ffbb;
+  --input: hsl(20, 80%, 55%);
+  --wip: hsl(210, 100%, 55%);
+  --output: hsl(140, 80%, 55%);
+  --alert: hsl(0, 100%, 60%);
+  
+  --bg-menu-alpha: 0.5;
+  --bg-menu: rgba(0, 0, 0, 0.5);
 
+  /*Shadow*/
   --shadow-rgb: 0, 0, 0;
   --shadow-alpha: 0.4;
   --shadow: 0 4px 10px rgba(var(--shadow-rgb), var(--shadow-alpha));
 
-  --bg-stage: hsl(220, 17%, 2%);
-  --bg-menu: rgba(0, 0, 0, 0.5);
+  /*Effects*/
   --blur: blur(5px);
 
-  --input: hsl(20, 80%, 55%);
-  --wip: hsl(210, 100%, 55%);
-  --output: hsl(140, 80%, 55%);
-
-  --glow: hsl(164, 100%, 50%, 0.6);
-  --alert: hsl(0, 100%, 60%);
+  --glow-rgb: 0, 255, 187;
+  --glow-alpha: 0.6;
+  --glow: rgba(var(--glow-rgb), var(--glow-alpha));
 
   --progress-bar-thickness: 1px;
   --progress: 30%;

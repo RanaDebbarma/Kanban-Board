@@ -101,7 +101,7 @@
 .heading .columnMenuBtn svg {
   fill: var(--text-secondary);
 }
-.heading .columnMenuBtn svg:hover {
+.heading .columnMenuBtn:hover svg {
   fill: var(--accent);
 }
 

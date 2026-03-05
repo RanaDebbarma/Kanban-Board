@@ -1,0 +1,19 @@
+.effectWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+
+  user-select: none;
+}
+
+.effectCompartment {
+  box-sizing: border-box;
+  background-color: var(--bg-menu);
+  border-radius: 30px;
+  padding: 4px 12px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

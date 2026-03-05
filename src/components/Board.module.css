@@ -6,7 +6,7 @@
 }
 
 .navBar {
-  background-color: var(--bg-stage);
+  background-color: var(--bg-navBar);
   border-bottom: 1px solid var(--border);
   color: var(--accent);
 

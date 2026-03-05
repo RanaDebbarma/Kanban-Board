@@ -1,4 +1,4 @@
-.wrapper {
+.colorWrapper {
   height: fit-content;
   width: 100%;
   padding: 0px;
@@ -6,16 +6,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  user-select: none;
 }
 
-.wrapper input[type="color"] {
+.colorWrapper input[type="color"] {
   border: none;
   outline: none;
   background-color: transparent;
 }
 
-.wrapper label,
-.wrapper input {
+.colorWrapper label,
+.colorWrapper input {
   color: var(--text-primary);
   cursor: pointer;
+  transition: 0.3s ease;
+}
+.colorWrapper label:hover {
+  color: var(--accent);
 }

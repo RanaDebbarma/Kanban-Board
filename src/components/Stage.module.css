@@ -33,6 +33,6 @@
 .columns .addColumnBtn svg {
   fill: var(--text-secondary);
 }
-.columns .addColumnBtn svg:hover {
+.columns .addColumnBtn:hover svg {
   fill: var(--accent);
 }

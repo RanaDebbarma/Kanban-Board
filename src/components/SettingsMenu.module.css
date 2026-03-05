@@ -3,7 +3,7 @@
   box-sizing: border-box;
   top: 0;
   right: 0;
-  backdrop-filter: blur(10px);
+  backdrop-filter: var(--blur);
   background-color: var(--bg-menu);
   border-left: 1px solid var(--border);
   color: var(--text-primary);
@@ -11,6 +11,7 @@
   height: 100%;
   padding: 12px;
   z-index: 15;
+  user-select: none;
 
   display: flex;
   flex-direction: column;
@@ -34,6 +35,12 @@
   border: none;
   background-color: var(--border);
 }
+.settingsMenu .compartment hr {
+  height: 1px;
+  width: 100%;
+  border: none;
+  background-color: var(--border);
+}
 
 .heading {
   flex-shrink: 0;
@@ -51,6 +58,20 @@
   align-items: center;
 }
 
+.colorCompartment{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.effectCompartment {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .footer {
   flex-shrink: 0;
   width: 100%;
@@ -59,14 +80,18 @@
 }
 
 .footer button {
-  background-color: var(--bg-card);
+  background-color: var(--bg-menu);
   color: var(--text-primary);
-  border: none;
+  border: 1px solid var(--border);
   outline: none;
   padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
+  transition: 0.3s ease;
 }
 .footer button:hover {
   color: var(--accent);
+}
+.footer button:active {
+  scale: 0.9;
 }
