@@ -12,7 +12,7 @@ const initialState = {
         /* -----------------------------Menu------------------------------- */
         // "--bg-menu": "rgba(0, 0, 0, 0.5)",
         "--menu-text-primary": "#e7ecee",
-        "--bg-menu": "rgba(0, 0, 0, 0.5)",
+        "--bg-menu": "#00000080",
 
         /* ----------------------------NavBar------------------------------- */
         "--bg-navBar": "#040506",
@@ -51,13 +51,17 @@ const initialState = {
           type: "alpha",
           value: 0.4,
         },
-        "--bg-menu-alpha": {
-          type: "alpha",
-          value: 0.5,
-        },
         "--progress-bar-thickness": {
           type: "thickness",
           value: 1,
+        },
+        "--blur": {
+          type: "blur",
+          value: 5,
+        },
+        "--bg-menu-alpha": {
+          type: "alpha",
+          value: 0.5,
         },
       },
     },
@@ -78,7 +82,7 @@ const initialState = {
         "--main-font-color": "#7ad9ff",
         "--accent": "#00ffbb",
         "--alert": "#ff3333",
-        "--border": "#2b3140",
+        "--border": "#65769f",
 
         /* -----------------------------Stage------------------------------ */
         "--bg-stage": "#96a8bb",
@@ -105,13 +109,17 @@ const initialState = {
           type: "alpha",
           value: 0.4,
         },
-        "--bg-menu-alpha": {
-          type: "alpha",
-          value: 0.5,
-        },
         "--progress-bar-thickness": {
           type: "thickness",
           value: 2,
+        },
+        "--blur": {
+          type: "blur",
+          value: 5,
+        },
+        "--bg-menu-alpha": {
+          type: "alpha",
+          value: 0.5,
         },
       },
     },

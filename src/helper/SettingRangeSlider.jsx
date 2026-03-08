@@ -37,6 +37,19 @@ export default function SettingRangeSlider({
             />
           </>
         }
+        {type === "blur" &&
+          <>
+            <span>{value}</span>
+            <input
+              type="range"
+              min={1}
+              max={100}
+              step={1}
+              value={value}
+              onChange={(e) => onChange(changeId, e.target.value)}
+            />
+          </>
+        }
       </div>
     </div>
   );

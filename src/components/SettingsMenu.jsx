@@ -80,6 +80,7 @@ export default function SettingsMenu({ showMenu }) {
           );
         })}
       </select>
+      <hr />
       <div className={styles.compartment}>
         <div className={styles.colorCompartment}>
           {Object.entries(draftTheme.color).map(([key, value]) => {
