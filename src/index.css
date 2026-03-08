@@ -17,7 +17,8 @@
   
   /* -----------------------------Menu------------------------------- */
   --bg-menu-alpha: 0.5;
-  --bg-menu: rgba(0, 0, 0, var(--bg-menu-alpha));
+  --bg-menu-rgb: #000000;
+  --bg-menu: rgba(var(--bg-menu-rgb), var(--bg-menu-alpha));
   --menu-text-primary: hsl(197, 18%, 92%);
 
   /* ----------------------------NavBar------------------------------- */
@@ -61,9 +62,6 @@
   --blur: blur(5px);
 
   /*glow*/
-  --glow-rgb: 0, 255, 187;
-  --glow-alpha: 0.6;
-  --glow: rgba(var(--glow-rgb), var(--glow-alpha));
   --glow: var(--accent);
 
   /*Extras*/

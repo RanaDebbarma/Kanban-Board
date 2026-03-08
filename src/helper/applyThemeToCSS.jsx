@@ -9,8 +9,10 @@ export function applyThemeToCSS(theme) {
   }
 
   Object.entries(theme.color).forEach(([key, value]) => {
-    if (key === "--bg-menu") return;
     root.style.setProperty(`${key}`, value);
+    if (key === "--bg-menu-rgb") {
+      root.style.setProperty("--bg-menu-rgb", hexToRGB(value));
+    };
     if (key === "--accent") {
       root.style.setProperty("--accent-rgb", hexToRGB(value));
     }
