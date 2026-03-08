@@ -143,7 +143,7 @@ export default function boardReducer(state, action) {
             date: date,
             status: state.columns[columnId].title,
             columnId: columnId,
-            color: "#1a1d24",
+            color: "#485b89",
             fill: false,
           },
         },
