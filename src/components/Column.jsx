@@ -98,7 +98,7 @@ export default function Column({ column, cards }) {
     <div
       className={`${styles.column}`}
       style={{
-        ...(column.cardLimit * 0.8 <= column.cardIds.length
+        ...(column.cardLimit <= column.cardIds.length
           ? {
               "--glow": theme.color["--alert"],
               "--accent-rgb": hexToRGB(theme.color["--alert"])
