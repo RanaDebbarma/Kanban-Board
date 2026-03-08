@@ -7,7 +7,7 @@ import styles from "./Column.module.css";
 export default function Column({ column, cards }) {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(column.title);
-  const { state, dispatch } = useBoard();
+  const { dispatch } = useBoard();
 
   const [showColumnMenu, setShowColumnMenu] = useState(false);
   const menuRef = useRef(null);
@@ -78,29 +78,9 @@ export default function Column({ column, cards }) {
     });
   };
 
-  const [isActive, setIsActive] = useState(false);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setIsActive((prev) => !prev);
-    }, 600);
-
-    return () => clearInterval(intervalId);
-  }, [state.hoveredColumn]);
-
   return (
     <div
-      className={`
-        ${styles.column} 
-        
-        ${state.hoveredColumn === column.id ? styles.columnGlow : ""}
-        
-        ${
-          isActive && state.hoveredColumn === column.id
-            ? styles.columnBreath
-            : ""
-        }
-      `}
+      className={styles.column}
       style={{
         ...(column.cardLimit * 0.8 <= column.cardIds.length
           ? {
@@ -109,6 +89,7 @@ export default function Column({ column, cards }) {
           : {}),
       }}
       data-column-id={column.id}
+      data-glow-class={styles.columnGlow}
     >
       <div className={styles.heading}>
         <div

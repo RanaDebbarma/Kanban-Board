@@ -13,6 +13,8 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
   const isPointerDown = useRef(false);
   const lastPoint = useRef({ x: 0, y: 0 });
   const cardRef = useRef(null);
+  const lastColumnRef = useRef(null);
+  const glowClassRef = useRef(null);
 
   /* -------------------- POINTER DOWN -------------------- */
 
@@ -73,19 +75,36 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
     const destColumn = element?.closest("[data-column-id]");
     cardRef.current.style.pointerEvents = "auto";
 
-    if (destColumn) {
-      dispatch({
-        type: "SET_HOVERED_COLUMN",
-        payload: {
-          hoverColumnId: destColumn.dataset.columnId,
-        },
-      });
+    const glowClass = destColumn?.dataset.glowClass;
+
+    if (destColumn !== lastColumnRef.current) {
+      if (lastColumnRef.current && glowClassRef.current) {
+        lastColumnRef.current.classList.remove(glowClassRef.current);
+      }
+
+      if (destColumn && glowClass) {
+        destColumn.classList.add(glowClass);
+        lastColumnRef.current = destColumn;
+        glowClassRef.current = glowClass;
+      }
+    }
+
+    if (!destColumn && lastColumnRef.current) {
+      lastColumnRef.current.classList.remove(glowClassRef.current);
+      lastColumnRef.current = null;
+      glowClassRef.current = null;
     }
   };
 
   /* -------------------- POINTER UP -------------------- */
 
   const handlePointerUp = (e) => {
+    if (lastColumnRef.current) {
+      lastColumnRef.current.classList.remove(glowClassRef.current);
+      lastColumnRef.current = null;
+      glowClassRef.current = null;
+    }
+
     if (holdTimeout.current) {
       clearTimeout(holdTimeout.current);
       holdTimeout.current = null;
@@ -116,11 +135,6 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
       });
     }
 
-    dispatch({
-      type: "SET_HOVERED_COLUMN",
-      payload: { hoverColumnId: null },
-    });
-
     setPos({ x: 0, y: 0 });
     setZIndex(0);
   };
@@ -140,7 +154,6 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
         touchAction: "none",
         transition: isDragging ? "none" : "transform 0.15s ease",
         ...(isDragging && {
-          // boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
           cursor: "grabbing",
         }),
       }}

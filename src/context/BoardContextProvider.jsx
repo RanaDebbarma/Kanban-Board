@@ -77,8 +77,6 @@ const initialState = {
   },
 
   stageOrder: ["input", "wip", "output"],
-
-  hoveredColumn: null,
 };
 
 const init = (initialState) => {
