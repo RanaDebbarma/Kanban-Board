@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import useBoard from "../hooks/useBoard";
 import Card from "./Card";
+import Counter from "../helper/counter";
 import styles from "./Column.module.css";
 
 export default function Column({ column, cards }) {
@@ -70,10 +71,10 @@ export default function Column({ column, cards }) {
     });
   };
 
-  const updateCardLimit = (e) => {
+  const updateCardLimit = (operation) => {
     dispatch({
       type: "UPDATE_COLUMN",
-      payload: { columnId: column.id, newCardLimit: e.target.value },
+      payload: { columnId: column.id, operation: operation },
     });
   };
 
@@ -115,6 +116,7 @@ export default function Column({ column, cards }) {
           onClick={() => setShowColumnMenu(true)}
         >
           <svg
+            className={styles.columnMenuBtn}
             xmlns="http://www.w3.org/2000/svg"
             height="24px"
             viewBox="0 -960 960 960"
@@ -123,25 +125,16 @@ export default function Column({ column, cards }) {
           >
             <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z" />
           </svg>
+          {/* Menu */}
           <div
             ref={menuRef}
             className={`${styles.columnMenu} ${showColumnMenu ? styles.showColumnMenu : ""}`}
           >
             <div className={styles.wipLimitBtn} onClick={updateCardLimit}>
-              <label htmlFor="cardLimit">card limit: </label>
-              <input
-                type="number"
-                value={column.cardLimit}
-                id="cardLimit"
-                min={1}
-                max={100}
-                onKeyDown={() => {
-                  return false;
-                }}
-                style={{
-                  caretColor: "transparent",
-                }}
-                onChange={updateCardLimit}
+              <label htmlFor="cardLimit">card limit</label>
+              <Counter
+                cardLimit={column.cardLimit}
+                changeCardLimit={updateCardLimit}
               />
             </div>
             <hr />
@@ -203,9 +196,7 @@ export default function Column({ column, cards }) {
           </svg>
           ADD CARD
         </button>
-        <div 
-          className={styles.cards}
-        >{renderCards()}</div>
+        <div className={styles.cards}>{renderCards()}</div>
       </div>
     </div>
   );

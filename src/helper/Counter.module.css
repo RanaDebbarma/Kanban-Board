@@ -1,0 +1,21 @@
+.counterWrapper {
+  color: var(--stage-color);
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.25rem;
+}
+
+.decreaseBtn,
+.increaseBtn {
+  width: 24px;
+  height: 24px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.decreaseBtn:hover svg,
+.increaseBtn:hover svg {
+  fill: var(--accent);
+}

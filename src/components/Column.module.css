@@ -92,16 +92,15 @@
   height: 28px;
   border-radius: 50%;
   border: none;
-  transition: 0.3s ease;
 }
 
 .heading .columnMenuBtn:hover {
   cursor: pointer;
 }
-.heading .columnMenuBtn svg {
+.heading .columnMenuBtn {
   fill: var(--column-btn-color);
 }
-.heading .columnMenuBtn:hover svg {
+.heading .columnMenuBtn:hover {
   fill: var(--accent);
 }
 
@@ -168,18 +167,21 @@
 .wipLimitBtn {
   background-color: transparent;
   color: var(--menu-text-primary);
-  padding: 8px 16px;
+  padding: 8px 0px;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
-.wipLimitBtn input {
+/* .wipLimitBtn input {
   width: 40px;
   height: fit-content;
 
   background-color: transparent;
   cursor: pointer;
-}
+} */
 
 .columnBody .addCardBtn {
   background-color: transparent;

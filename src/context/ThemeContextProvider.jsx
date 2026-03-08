@@ -40,10 +40,10 @@ const initialState = {
         "--output": "#30e86e",
 
         /* -----------------------------card------------------------------- */
-        "--bg-card": " #1a1d24",
+        "--bg-card": "#1a1d24",
         "--card-text-primary": "#e7ecee",
         "--card-text-secondary": "#8596ab",
-        "--card-hr": "var(--border)",
+        "--card-hr": "#2b3140",
       },
 
       effect: {
@@ -98,7 +98,7 @@ const initialState = {
         "--output": "#30e86e",
 
         /* -----------------------------card------------------------------- */
-        "--bg-card": " #c4c4c4",
+        "--bg-card": "#c4c4c4",
         "--card-text-primary": "#000000",
         "--card-text-secondary": "#194376",
         "--card-hr": "#c4c4c4",

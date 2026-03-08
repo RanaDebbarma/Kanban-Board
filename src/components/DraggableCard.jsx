@@ -140,7 +140,7 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
         touchAction: "none",
         transition: isDragging ? "none" : "transform 0.15s ease",
         ...(isDragging && {
-          boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
+          // boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
           cursor: "grabbing",
         }),
       }}

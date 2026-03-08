@@ -2,6 +2,7 @@ export function applyThemeToCSS(theme) {
   const root = document.documentElement;
 
   Object.entries(theme.color).forEach(([key, value]) => {
+    if(key === "--bg-menu") return;
     root.style.setProperty(`${key}`, value);
   });
 

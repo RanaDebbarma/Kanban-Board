@@ -71,7 +71,7 @@ export default function boardReducer(state, action) {
     }
 
     case "UPDATE_COLUMN": {
-      const { columnId, newTitle, newCardLimit } = action.payload;
+      const { columnId, newTitle, operation } = action.payload;
 
       // updating card status
       const column = state.columns[columnId];
@@ -80,9 +80,18 @@ export default function boardReducer(state, action) {
       column.cardIds.forEach((cardId) => {
         newCards[cardId] = {
           ...newCards[cardId],
-          ...(newTitle && { status: newTitle }),
+          ...(newTitle !== undefined && { status: newTitle }),
         };
       });
+
+      const currentLimit = Number(column.cardLimit);
+
+      const newLimit =
+        operation === "increase"
+          ? currentLimit + 1
+          : operation === "decrease"
+            ? Math.max(0, currentLimit - 1)
+            : column.cardLimit;
 
       return {
         ...state,
@@ -91,8 +100,8 @@ export default function boardReducer(state, action) {
           ...state.columns,
           [columnId]: {
             ...state.columns[columnId],
-            ...(newTitle && { title: newTitle }),
-            ...(newCardLimit && { cardLimit: newCardLimit }),
+            ...(newTitle !== undefined && { title: newTitle }),
+            ...(operation && { cardLimit: newLimit }),
           },
         },
 
@@ -114,7 +123,10 @@ export default function boardReducer(state, action) {
         hour12: true,
       });
 
-      if(state.columns[columnId].cardLimit <= state.columns[columnId].cardIds.length) {
+      if (
+        state.columns[columnId].cardLimit <=
+        state.columns[columnId].cardIds.length
+      ) {
         alert("Card limit reached!");
         return state;
       }
@@ -169,7 +181,8 @@ export default function boardReducer(state, action) {
     }
 
     case "UPDATE_CARD": {
-      const { cardId, newTitle, newColor, fill, newDescription } = action.payload;
+      const { cardId, newTitle, newColor, fill, newDescription } =
+        action.payload;
 
       return {
         ...state,
