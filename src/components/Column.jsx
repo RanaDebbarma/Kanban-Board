@@ -101,7 +101,7 @@ export default function Column({ column, cards }) {
         ...(column.cardLimit <= column.cardIds.length
           ? {
               "--glow": theme.color["--alert"],
-              "--accent-rgb": hexToRGB(theme.color["--alert"])
+              "--accent-rgb": hexToRGB(theme.color["--alert"]),
             }
           : {}),
       }}
@@ -153,10 +153,7 @@ export default function Column({ column, cards }) {
             />
           </div>
         ) : (
-          <div
-            className={styles.title}
-            onClick={() => setIsEditing(true)}
-          >
+          <div className={styles.title} onClick={() => setIsEditing(true)}>
             {column.title}
           </div>
         )}
@@ -194,7 +191,11 @@ export default function Column({ column, cards }) {
           </svg>
           ADD CARD
         </button>
-        <div className={`${styles.cards} ${limitReached ? styles.shake : ""}`}>
+        <div
+          className={`${styles.cards} ${limitReached ? styles.columnShake : ""}`}
+          data-cards-wrapper
+          data-shake-class={styles.columnShake}
+        >
           {renderCards()}
         </div>
       </div>
