@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import useBoard from "../hooks/useBoard";
 
 export default function DraggableCard({ children, cardId, srcColumnId }) {
-  const { dispatch } = useBoard();
+  const { state, dispatch } = useBoard();
 
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [zIndex, setZIndex] = useState(0);
@@ -124,7 +124,11 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
     const destColumn = element?.closest("[data-column-id]");
     cardRef.current.style.pointerEvents = "auto";
 
-    if (destColumn) {
+    if (
+      destColumn &&
+      state.columns[destColumn.dataset.columnId].cardLimit >
+        state.columns[destColumn.dataset.columnId].cardIds.length
+    ) {
       dispatch({
         type: "MOVE_CARD",
         payload: {

@@ -68,6 +68,7 @@ export default function Board() {
         <div className={styles.workingArea}>
           <div className={styles.heading}>
             <input
+              name="boardTitle"
               className={styles.title}
               type="text"
               value={state.title}

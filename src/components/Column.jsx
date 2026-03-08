@@ -1,13 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import useBoard from "../hooks/useBoard";
+import useTheme from "../hooks/useTheme";
 import Card from "./Card";
 import Counter from "../helper/Counter";
+import hexToRGB from "../helper/hexToRgb";
 import styles from "./Column.module.css";
 
 export default function Column({ column, cards }) {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(column.title);
+  const [limitReached, setLimitReached] = useState(false);
+
   const { dispatch } = useBoard();
+  const { themeState } = useTheme();
+
+  const theme = themeState.themes[themeState.activeTheme];
 
   const [showColumnMenu, setShowColumnMenu] = useState(false);
   const menuRef = useRef(null);
@@ -65,6 +72,15 @@ export default function Column({ column, cards }) {
   };
 
   const addCard = () => {
+    if (column.cardLimit <= column.cardIds.length) {
+      setLimitReached(true);
+
+      setTimeout(() => {
+        setLimitReached(false);
+      }, 350);
+
+      return;
+    }
     dispatch({
       type: "ADD_CARDS",
       payload: { columnId: column.id },
@@ -80,11 +96,12 @@ export default function Column({ column, cards }) {
 
   return (
     <div
-      className={styles.column}
+      className={`${styles.column}`}
       style={{
         ...(column.cardLimit * 0.8 <= column.cardIds.length
           ? {
-              "--glow": "var(--alert)",
+              "--glow": theme.color["--alert"],
+              "--accent-rgb": hexToRGB(theme.color["--alert"])
             }
           : {}),
       }}
@@ -112,7 +129,7 @@ export default function Column({ column, cards }) {
             className={`${styles.columnMenu} ${showColumnMenu ? styles.showColumnMenu : ""}`}
           >
             <div className={styles.wipLimitBtn} onClick={updateCardLimit}>
-              <label htmlFor="cardLimit">card limit</label>
+              <div>card limit</div>
               <Counter
                 cardLimit={column.cardLimit}
                 changeCardLimit={updateCardLimit}
@@ -138,7 +155,7 @@ export default function Column({ column, cards }) {
         ) : (
           <div
             className={styles.title}
-            onDoubleClick={() => setIsEditing(true)}
+            onClick={() => setIsEditing(true)}
           >
             {column.title}
           </div>
@@ -177,7 +194,9 @@ export default function Column({ column, cards }) {
           </svg>
           ADD CARD
         </button>
-        <div className={styles.cards}>{renderCards()}</div>
+        <div className={`${styles.cards} ${limitReached ? styles.shake : ""}`}>
+          {renderCards()}
+        </div>
       </div>
     </div>
   );

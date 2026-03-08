@@ -123,13 +123,10 @@ export default function boardReducer(state, action) {
         hour12: true,
       });
 
-      if (
-        state.columns[columnId].cardLimit <=
-        state.columns[columnId].cardIds.length
-      ) {
-        alert("Card limit reached!");
-        return state;
-      }
+      const root = document.documentElement;
+      const columnColor = getComputedStyle(root)
+        .getPropertyValue("--bg-column")
+        .trim();
 
       return {
         ...state,
@@ -143,7 +140,7 @@ export default function boardReducer(state, action) {
             date: date,
             status: state.columns[columnId].title,
             columnId: columnId,
-            color: "#485b89",
+            color: columnColor,
             fill: false,
           },
         },

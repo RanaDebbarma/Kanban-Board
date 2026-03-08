@@ -69,6 +69,7 @@ export default function SettingsMenu({ showMenu }) {
       <div className={styles.heading}>Settings</div>
       <hr />
       <select
+        name="themeSelector"
         value={themeState.activeTheme}
         onChange={(e) => handleThemeSelect(e.target.value)}
       >

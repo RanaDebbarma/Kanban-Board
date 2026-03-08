@@ -71,7 +71,7 @@ const initialState = {
       description: "Add description...",
       columnId: "backlog",
       date: date(),
-      color: "#1a1d24",
+      color: "#485b89",
       fill: false,
     },
   },
