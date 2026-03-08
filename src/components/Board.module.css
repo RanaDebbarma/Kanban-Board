@@ -8,7 +8,7 @@
 .navBar {
   background-color: var(--bg-navBar);
   border-bottom: 1px solid var(--border);
-  color: var(--accent);
+  color: var(--navBar-font-color);
 
   font-size: 1.4rem;
   font-weight: 400;
@@ -40,7 +40,7 @@
 }
 
 .settingsMenu svg {
-  fill: var(--text-primary);
+  fill: var(--navBar-menu-color);
   cursor: pointer;
   transition: 0.3s ease;
 }
@@ -68,7 +68,7 @@
 }
 
 .heading {
-  color: var(--text-primary);
+  color: var(--main-font-color);
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -80,7 +80,7 @@
 
 .heading .title {
   background-color: transparent;
-  color: var(--text-primary);
+  color: var(--main-font-color);
   border: none;
   outline: none;
 
@@ -110,49 +110,6 @@
   padding-bottom: 12px;
   user-select: none;
 }
-
-/* .contact {
-  height: 100%;
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  padding: 0px 20px;
-
-  transition: 0.3s ease;
-}
-
-.contact:hover {
-  background-color: var(--bg-main);
-  transform: translateY(-2px);
-  cursor: pointer;
-}
-
-.contactDetails {
-  background-color: var(--bg-stage);
-  border: 1px solid var(--border);
-  color: var(--accent);
-
-  font-size: 0.9rem;
-  
-  border-top: none;
-  
-  position: absolute;
-  top: -10px;
-  right: 0;
-  
-  width: fit-content;
-  padding: 16px;
-  border-radius: 0px 0px 8px 8px;
-
-  z-index: 5;
-  transition: transform 0.3s ease;
-}
-
-.showContactDetails {
-  transform: translateY(calc(-10px + 10px + 52px));
-} */
 
 .stage {
   position: relative;

@@ -12,8 +12,8 @@
   width: 36px;
   border: none;
 
-  background-color: rgba(255, 255, 255, 0);
-  color: var(--text-secondary);
+  background-color: transparent;
+  color: var(--stage-btn-color);
   
   font-size: 1.2rem;
 
@@ -25,13 +25,13 @@
 }
 
 .columns .addColumnBtn:hover {
-  background-color: var(--bg-card);
+  background-color: var(--bg-column);
 ;
   cursor: pointer;
 }
 
 .columns .addColumnBtn svg {
-  fill: var(--text-secondary);
+  fill: var(--stage-btn-color);
 }
 .columns .addColumnBtn:hover svg {
   fill: var(--accent);

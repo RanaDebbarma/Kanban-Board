@@ -20,10 +20,6 @@
   translate: 0px -4px;
 }
 
-/* .cardBody:active {
-  background-color: var(--bg-column);
-  } */
-
 .cardHeader {
   display: flex;
   justify-content: space-between;
@@ -78,7 +74,7 @@
 }
 
 .cardMenuBtn svg {
-  fill: var(--text-secondary);
+  fill: var(--card-text-secondary);
   cursor: pointer;
 }
 
@@ -125,7 +121,7 @@
 
 .deleteCardBtn {
   background-color: transparent;
-  color: var(--text-primary);
+  color: var(--menu-text-primary);
 
   font-size: 0.8rem;
 
@@ -146,23 +142,19 @@
 
 .CardPriorityBtn {
   background-color: transparent;
-  color: var(--text-secondary);
+  color: var(--menu-text-primary);
   padding: 8px 16px;
   display: flex;
   justify-content: center;
   gap: 4px;
 }
 
-.CardPriorityBtn select {
-  color: var(--card-text-primary);
+.CardHeading {
+  color: var(--menu-text-primary);
   background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
-}
-
-.CardPriorityBtn select option {
-  background-color: var(--bg-column);
 }
 
 .title input {

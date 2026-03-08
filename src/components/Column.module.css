@@ -31,7 +31,6 @@
 .heading input,
 .title {
   background-color: transparent;
-  color: var(--text-primary);
   color: var(--stage-color);
 
   font-size: 1.2rem;
@@ -84,7 +83,7 @@
   right: 0;
 
   background-color: transparent;
-  color: var(--text-primary);
+  color: var(--column-btn-color);
 
   display: flex;
   justify-content: center;
@@ -100,7 +99,7 @@
   cursor: pointer;
 }
 .heading .columnMenuBtn svg {
-  fill: var(--text-secondary);
+  fill: var(--column-btn-color);
 }
 .heading .columnMenuBtn:hover svg {
   fill: var(--accent);
@@ -147,7 +146,7 @@
 }
 
 .deleteColumnBtn {
-  color: var(--text-primary);
+  color: var(--menu-text-primary);
 
   font-size: 0.9rem;
 
@@ -168,7 +167,7 @@
 
 .wipLimitBtn {
   background-color: transparent;
-  color: var(--text-secondary);
+  color: var(--menu-text-primary);
   padding: 8px 16px;
   display: flex;
   justify-content: space-around;
@@ -184,7 +183,7 @@
 
 .columnBody .addCardBtn {
   background-color: transparent;
-  color: var(--text-secondary);
+  color: var(--column-btn-color);
   font-size: 0.9rem;
 
   display: flex;
@@ -197,17 +196,17 @@
   border-radius: 8px;
   border: none;
   margin-bottom: 8px;
-  transition: 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .columnBody .addCardBtn:hover {
   background-color: var(--bg-card);
-  color: var(--text-primary);
+  color: var(--card-text-primary);
   cursor: pointer;
 }
 
 .columnBody .addCardBtn svg {
-  fill: var(--text-secondary);
+  fill: var(--column-btn-color);
   margin-right: 4px;
 }
 .columnBody .addCardBtn:hover svg {

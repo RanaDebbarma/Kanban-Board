@@ -6,7 +6,7 @@
   backdrop-filter: var(--blur);
   background-color: var(--bg-menu);
   border-left: 1px solid var(--border);
-  color: var(--text-primary);
+  color: var(--menu-text-primary);
   width: 280px;
   height: 100%;
   padding: 12px;
@@ -30,17 +30,17 @@
 }
 
 .settingsMenu hr {
-  height: 0.5px;
-  width: 100%;
-  border: none;
-  background-color: var(--border);
-}
-.settingsMenu .compartment hr {
   height: 1px;
   width: 100%;
   border: none;
   background-color: var(--border);
 }
+/* .settingsMenu .compartment hr {
+  height: 1px;
+  width: 100%;
+  border: none;
+  background-color: var(--accent);
+} */
 
 .heading {
   flex-shrink: 0;
@@ -81,7 +81,7 @@
 
 .footer button {
   background-color: var(--bg-menu);
-  color: var(--text-primary);
+  color: var(--menu-text-primary);
   border: 1px solid var(--border);
   outline: none;
   padding: 6px 12px;

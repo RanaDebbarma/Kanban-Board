@@ -118,7 +118,7 @@ export default function Card({ card }) {
               ref={menuRef}
               className={`${styles.cardMenu} ${showCardMenu ? styles.showCardMenu : ""}`}
             >
-              <div className={styles.CardPriorityBtn}>card menu</div>
+              <div className={styles.CardHeading}>card menu</div>
               <hr />
               <div className={styles.deleteCardBtn} onClick={deleteCard}>
                 DELETE CARD

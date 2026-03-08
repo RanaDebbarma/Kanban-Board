@@ -1,53 +1,66 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SettingColorPicker from "../helper/SettingColorPicker";
 import SettingRangeSlider from "../helper/SettingRangeSlider";
+import { applyThemeToCSS } from "../helper/applyThemeToCSS";
 import useTheme from "../hooks/useTheme";
 import styles from "./SettingsMenu.module.css";
 
 export default function SettingsMenu({ showMenu }) {
-  const { themeState } = useTheme();
+  const { themeState, dispatchTheme } = useTheme();
   const [draftTheme, setDraftTheme] = useState(
     themeState.themes[themeState.activeTheme],
   );
 
+  const handleThemeSelect = (activeTheme) => {
+    const theme = themeState.themes[activeTheme];
+
+    dispatchTheme({
+      type: "ACTIVATE_THEME",
+      payload: { activeTheme: activeTheme },
+    });
+
+    setDraftTheme(theme);
+    applyThemeToCSS(theme);
+  };
+
   const handleChange = (key, value) => {
-    setDraftTheme((prev) => ({
-      ...prev,
-      color: {
-        ...prev.color,
-        [key]: value,
-      },
-    }));
-  };
-
-  const handleRaneg = (key, value) => {
-    setDraftTheme((prev) => ({
-      ...prev,
-      effect: {
-        ...prev.effect,
-        [key]: {
-          ...prev.effect[key],
-          value: value,
+    setDraftTheme((prev) => {
+      const updated = {
+        ...prev,
+        color: {
+          ...prev.color,
+          [key]: value,
         },
-      },
-    }));
+      };
+
+      applyThemeToCSS(updated);
+      return updated;
+    });
   };
 
-  useEffect(() => {
-    Object.entries(draftTheme.color).forEach(([key, value]) => {
-      document.documentElement.style.setProperty(`--${key}`, value);
-    });
-  }, [draftTheme.color]);
+  const handleRange = (key, value) => {
+    setDraftTheme((prev) => {
+      const updated = {
+        ...prev,
+        effect: {
+          ...prev.effect,
+          [key]: {
+            ...prev.effect[key],
+            value,
+          },
+        },
+      };
 
-  useEffect(() => {
-    Object.entries(draftTheme.effect).forEach(([key, {type, value}]) => {
-      if(type === "thickness") {
-        document.documentElement.style.setProperty(`--${key}`, `${value}px`);
-      } else {
-        document.documentElement.style.setProperty(`--${key}`, value);
-      }
+      applyThemeToCSS(updated);
+      return updated;
     });
-  }, [draftTheme.effect]);
+  };
+
+  const resetTheme = () => {
+    const theme = themeState.themes[themeState.activeTheme];
+    setDraftTheme(theme);
+    applyThemeToCSS(theme);
+  };
 
   return (
     <div
@@ -55,6 +68,18 @@ export default function SettingsMenu({ showMenu }) {
     >
       <div className={styles.heading}>Settings</div>
       <hr />
+      <select
+        value={themeState.activeTheme}
+        onChange={(e) => handleThemeSelect(e.target.value)}
+      >
+        {Object.entries(themeState.themes).map(([key]) => {
+          return (
+            <option key={key} value={key}>
+              {key}
+            </option>
+          );
+        })}
+      </select>
       <div className={styles.compartment}>
         <div className={styles.colorCompartment}>
           {Object.entries(draftTheme.color).map(([key, value]) => {
@@ -71,7 +96,7 @@ export default function SettingsMenu({ showMenu }) {
         </div>
         <hr />
         <div className={styles.effectCompartment}>
-          {Object.entries(draftTheme.effect).map(([key, {type, value}]) => {
+          {Object.entries(draftTheme.effect).map(([key, { type, value }]) => {
             return (
               <SettingRangeSlider
                 key={key}
@@ -79,7 +104,7 @@ export default function SettingsMenu({ showMenu }) {
                 value={value}
                 changeId={key}
                 type={type}
-                onChange={handleRaneg}
+                onChange={handleRange}
               />
             );
           })}
@@ -87,7 +112,9 @@ export default function SettingsMenu({ showMenu }) {
       </div>
       <hr />
       <div className={styles.footer}>
-        <button className={styles.resetBtn}>reset</button>
+        <button className={styles.resetBtn} onClick={resetTheme}>
+          reset
+        </button>
         <button className={styles.saveBtn}>save</button>
       </div>
     </div>
