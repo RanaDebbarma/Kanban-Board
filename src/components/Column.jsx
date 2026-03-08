@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import useBoard from "../hooks/useBoard";
 import Card from "./Card";
-import Counter from "../helper/counter";
+import Counter from "../helper/Counter";
 import styles from "./Column.module.css";
 
 export default function Column({ column, cards }) {
