@@ -84,7 +84,6 @@ export default function SettingsMenu({ showMenu }) {
       <div className={styles.compartment}>
         <div className={styles.colorCompartment}>
           {Object.entries(draftTheme.color).map(([key, value]) => {
-            if(key === "--bg-menu") return;
             return (
               <SettingColorPicker
                 key={key}

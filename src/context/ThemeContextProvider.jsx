@@ -4,11 +4,12 @@ import themeReducer from "../reducers/themeReducer";
 import { applyThemeToCSS } from "../helper/applyThemeToCSS";
 
 const initialState = {
-  activeTheme: "defaultDark",
+  activeTheme: "defaultLight",
 
   themes: {
     defaultDark: {
       color: {
+        isDefault: true,
         /* -----------------------------Menu------------------------------- */
         // "--bg-menu": "rgba(0, 0, 0, 0.5)",
         "--menu-text-primary": "#e7ecee",
@@ -67,6 +68,7 @@ const initialState = {
     },
 
     defaultLight: {
+      isDefault: true,
       color: {
         /* -----------------------------Menu------------------------------- */
         "--menu-text-primary": "#c3cbe5",

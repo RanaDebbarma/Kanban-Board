@@ -142,7 +142,7 @@ export default function Card({ card }) {
                 autoFocus
               />
             ) : (
-              <div onClick={startTitleEdit}>{card.title}</div>
+              <div onClick={startTitleEdit}>{card.title || "Add Title..."}</div>
             )}
           </div>
         </div>
