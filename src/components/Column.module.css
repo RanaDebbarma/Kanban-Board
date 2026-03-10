@@ -252,7 +252,7 @@
 
 .cards {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-items: center;
 
   width: 100%;

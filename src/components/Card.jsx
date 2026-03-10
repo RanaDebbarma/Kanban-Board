@@ -98,6 +98,7 @@ export default function Card({ card }) {
             backgroundColor: card.color,
           }),
         }}
+        data-card-id={card.id}
       >
         <div className={styles.cardHeader}>
           <div className={styles.cardStatus}>STATUS: {card.status}</div>

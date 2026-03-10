@@ -149,7 +149,7 @@ export default function boardReducer(state, action) {
           ...state.columns,
           [columnId]: {
             ...state.columns[columnId],
-            cardIds: [...state.columns[columnId].cardIds, newId],
+            cardIds: [newId, ...state.columns[columnId].cardIds],
           },
         },
       };
@@ -200,33 +200,68 @@ export default function boardReducer(state, action) {
     }
 
     case "MOVE_CARD": {
-      const { cardId, srcId, dstId } = action.payload;
+      const { cardId, srcId, dstId, moveToId, insertAfter } = action.payload;
 
       if (srcId === dstId) return state;
 
+      const dstCardIds = [...state.columns[dstId].cardIds];
+      const srcCardIds = state.columns[srcId].cardIds.filter(
+        (id) => id !== cardId,
+      );
+
+      if (!moveToId) {
+        // fallback to top
+        dstCardIds.unshift(cardId);
+      } else {
+        const index = dstCardIds.indexOf(moveToId);
+        dstCardIds.splice(index + (insertAfter ? 1 : 0), 0, cardId);
+      }
+
       return {
         ...state,
-
         columns: {
           ...state.columns,
-
           [srcId]: {
             ...state.columns[srcId],
-            cardIds: state.columns[srcId].cardIds.filter((id) => id !== cardId),
+            cardIds: srcCardIds,
           },
-
           [dstId]: {
             ...state.columns[dstId],
-            cardIds: [...state.columns[dstId].cardIds, cardId],
+            cardIds: dstCardIds,
           },
         },
-
         cards: {
           ...state.cards,
           [cardId]: {
             ...state.cards[cardId],
             columnId: dstId,
             status: state.columns[dstId].title,
+          },
+        },
+      };
+    }
+
+    case "dnd_sort": {
+      const { moveFromId, moveToId, insertAfter, columnId } = action.payload;
+
+      if (!moveToId) return state;
+
+      const newCardIds = [...state.columns[columnId].cardIds];
+      const fromIndex = newCardIds.indexOf(moveFromId);
+      const toIndex = newCardIds.indexOf(moveToId);
+
+      if (fromIndex === -1 || toIndex === -1) return state;
+
+      newCardIds.splice(fromIndex, 1);
+      newCardIds.splice(toIndex + (insertAfter ? 1 : 0), 0, moveFromId);
+
+      return {
+        ...state,
+        columns: {
+          ...state.columns,
+          [columnId]: {
+            ...state.columns[columnId],
+            cardIds: newCardIds,
           },
         },
       };

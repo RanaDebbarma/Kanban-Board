@@ -18,7 +18,6 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
   const glowClassRef = useRef(null);
 
   /* ---------------- POINTER DOWN ---------------- */
-
   const handlePointerDown = (e) => {
     if (e.target.closest("button, input, textarea")) return;
 
@@ -28,7 +27,6 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
       holdTimeout.current = setTimeout(() => {
         isPointerDown.current = true;
         setIsActive(true);
-
         if (navigator.vibrate) navigator.vibrate(10);
       }, 500);
     } else {
@@ -37,18 +35,15 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
   };
 
   /* ---------------- POINTER MOVE ---------------- */
-
   const handlePointerMove = (e) => {
     if (!isPointerDown.current) {
       const dx = e.clientX - lastPoint.current.x;
       const dy = e.clientY - lastPoint.current.y;
       const distance = Math.hypot(dx, dy);
-
       if (distance > 15 && holdTimeout.current) {
         clearTimeout(holdTimeout.current);
         holdTimeout.current = null;
       }
-
       return;
     }
 
@@ -58,20 +53,14 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
     if (!isDragging) {
       const distance = Math.hypot(dx, dy);
       if (distance < 5) return;
-
       setIsDragging(true);
       setZIndex(999);
     }
 
-    setPos((prev) => ({
-      x: prev.x + dx,
-      y: prev.y + dy,
-    }));
-
+    setPos((prev) => ({ x: prev.x + dx, y: prev.y + dy }));
     lastPoint.current = { x: e.clientX, y: e.clientY };
 
     /* detect hovered column */
-
     cardRef.current.style.pointerEvents = "none";
     const element = document.elementFromPoint(e.clientX, e.clientY);
     const destColumn = element?.closest("[data-column-id]");
@@ -83,7 +72,6 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
       if (lastColumnRef.current && glowClassRef.current) {
         lastColumnRef.current.classList.remove(glowClassRef.current);
       }
-
       if (destColumn && glowClass) {
         destColumn.classList.add(glowClass);
         lastColumnRef.current = destColumn;
@@ -99,15 +87,15 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
   };
 
   /* ---------------- POINTER UP ---------------- */
-
   const handlePointerUp = (e) => {
+    // cleanup glow
     if (lastColumnRef.current && glowClassRef.current) {
       lastColumnRef.current.classList.remove(glowClassRef.current);
     }
-
     lastColumnRef.current = null;
     glowClassRef.current = null;
 
+    // clear hold
     if (holdTimeout.current) {
       clearTimeout(holdTimeout.current);
       holdTimeout.current = null;
@@ -119,50 +107,77 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
     isPointerDown.current = false;
 
     if (!isDragging) return;
-
     setIsDragging(false);
 
     cardRef.current.style.pointerEvents = "none";
+
     const element = document.elementFromPoint(e.clientX, e.clientY);
     const destColumn = element?.closest("[data-column-id]");
+    const cardTo = element?.closest("[data-card-id]");
+
     cardRef.current.style.pointerEvents = "auto";
 
-    if (destColumn) {
-      const columnId = destColumn.dataset.columnId;
-      const column = state.columns[columnId];
-
-      const cardsWrapper = destColumn.querySelector("[data-cards-wrapper]");
-      const shakeClass = cardsWrapper?.dataset.shakeClass;
-
-      const limitReached =
-        column.cardIds.length >= column.cardLimit && columnId !== srcColumnId;
-
-      if (limitReached) {
-        /* trigger shake animation */
-
-        if (cardsWrapper && shakeClass) {
-          cardsWrapper.classList.remove(shakeClass);
-          void cardsWrapper.offsetWidth; // force reflow // restart animation
-          cardsWrapper.classList.add(shakeClass);
-        }
-      } else {
-        dispatch({
-          type: "MOVE_CARD",
-          payload: {
-            cardId,
-            srcId: srcColumnId,
-            dstId: columnId,
-          },
-        });
-      }
+    if (!destColumn || cardTo?.dataset.cardId === cardId) {
+      setPos({ x: 0, y: 0 });
+      setZIndex(0);
+      return;
     }
 
+    // reset transform BEFORE dispatch
     setPos({ x: 0, y: 0 });
     setZIndex(0);
+
+    const columnId = destColumn.dataset.columnId;
+    const isSameColumn = columnId === srcColumnId;
+    const column = state.columns[columnId];
+    const cardsWrapper = destColumn.querySelector("[data-cards-wrapper]");
+    const shakeClass = cardsWrapper?.dataset.shakeClass;
+
+    const limitReached =
+      column.cardIds.length >= column.cardLimit && columnId !== srcColumnId;
+
+    if (limitReached) {
+      if (cardsWrapper && shakeClass) {
+        cardsWrapper.classList.remove(shakeClass);
+        void cardsWrapper.offsetWidth; // force reflow
+        cardsWrapper.classList.add(shakeClass);
+      }
+      return;
+    }
+
+    // determine insertBefore / insertAfter
+    let insertAfter = false;
+    if (cardTo && cardTo.dataset.cardId !== cardId) {
+      const rect = cardTo.getBoundingClientRect();
+      const middleY = rect.top + rect.height / 2;
+      insertAfter = e.clientY > middleY;
+    }
+
+    if (isSameColumn) {
+      dispatch({
+        type: "dnd_sort",
+        payload: {
+          moveFromId: cardId,
+          moveToId: cardTo?.dataset.cardId ?? null,
+          insertAfter,
+          columnId,
+        },
+      });
+    } else {
+      dispatch({
+        type: "MOVE_CARD",
+        payload: {
+          cardId,
+          srcId: srcColumnId,
+          dstId: columnId,
+          moveToId: cardTo?.dataset.cardId ?? null,
+          insertAfter,
+        },
+      });
+    }
   };
 
   /* ---------------- RENDER ---------------- */
-
   return (
     <div
       ref={cardRef}
@@ -171,7 +186,9 @@ export default function DraggableCard({ children, cardId, srcColumnId }) {
       onPointerUp={handlePointerUp}
       style={{
         width: "100%",
-        transform: `translate(${pos.x}px, ${pos.y}px) scale(${isActive || isDragging ? 1.09 : 1})`,
+        transform: `translate(${pos.x}px, ${pos.y}px) scale(${
+          isActive || isDragging ? 1.09 : 1
+        })`,
         zIndex,
         touchAction: "none",
         transition: isDragging ? "none" : "transform 0.15s ease",
