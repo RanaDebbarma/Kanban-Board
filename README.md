@@ -1,27 +1,106 @@
-# Kan-ban board
+# 🧩 Kanban Board
 
-A Kanban board is a visual project management tool used to track work, optimize efficiency, and improve workflow by displaying tasks as cards moving across columns (typically "To Do," "In Progress," and "Done"). It helps teams visualize bottlenecks, limit work-in-progress (WIP), and enhance transparency.
+A modern and interactive Kanban board built with React, featuring drag-and-drop task management, global state handling, theme customization, and persistent storage using localStorage.
 
-## Tech stack used
+---
 
-* HTML
-* CSS
-* Javascript
-* React
-* Git
+## 🚀 Live Demo
 
-## Features
+👉 https://kanban-board-five-mu-44.vercel.app
 
-* Three work flow stages represented by colors
-* Dynamically add or remove columns(except default)
-* Add or remove cards
-* Date will be added automatically when u first create a card
-* Drag and drop to change card status
+---
 
-## Motive of this project
+## 📸 Screenshots
 
-I made this project for learning purpose, so right now i only plan to implement localstorage but may be some day i will implement actual database system.
+![Add Card](./public/screenshots/add_card.png)
+(./public/screenshots/move_card.png)
+(./public/screenshots/delete_card.png)
+(./public/screenshots/delete_column.png)
+(./public/screenshots/card_color_tag.png)
+(./public/screenshots/dark_theme.png)
+(./public/screenshots/custom_theme.png)
 
-## Work is still in progress
 
-Currently working on Polishing UI and Nav bar
+---
+
+## ✨ Features
+
+* 🖱️ Drag-and-drop task management across multiple columns
+* 📝 Add, edit, and delete tasks
+* 🌐 Global state management using Context API
+* ⚙️ Structured state logic with useReducer
+* 💾 Persistent state using localStorage (data saved across sessions)
+* 🎨 Theme switching with saved user preferences
+
+---
+
+## 🛠 Tech Stack
+
+* **Frontend:** React, JavaScript (ES6+)
+* **State Management:** useReducer, Context API
+* **Styling:** CSS
+* **Build Tool:** Vite
+
+---
+
+## 🧠 Architecture Overview
+
+* Centralized state management using **useReducer** for predictable state transitions
+* Global state shared across components via **Context API**
+* State synchronization with **localStorage** to persist data across sessions
+
+---
+
+## ⚙️ How It Works
+
+* Tasks and columns are managed through a reducer-based state system
+* Drag-and-drop interactions trigger state updates via dispatched actions
+* State is synchronized with localStorage to retain data after refresh
+* Theme preferences are stored and restored automatically
+
+---
+
+## 📦 Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/RanaDebbarma/Kanban-Board.git
+cd Kanban-Board
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+---
+
+## 🧠 What I Learned
+
+* Managing complex application state using **useReducer**
+* Implementing global state with **Context API**
+* Handling drag-and-drop UI interactions efficiently
+* Persisting application data using **localStorage**
+
+---
+
+## ⚡ Future Improvements
+
+* Multiple boards support
+* Backend integration for real-time sync
+* User authentication
+* Drag-and-drop animations (Framer Motion)
+
+---
+
+## 🔗 Repository
+
+👉 https://github.com/RanaDebbarma/Kanban-Board
