@@ -12,14 +12,26 @@ A modern and interactive Kanban board built with React, featuring drag-and-drop 
 
 ## 📸 Screenshots
 
+#### Add card
 ![Add Card](./public/screenshots/add_card.png)
-(./public/screenshots/move_card.png)
-(./public/screenshots/delete_card.png)
-(./public/screenshots/delete_column.png)
-(./public/screenshots/card_color_tag.png)
-(./public/screenshots/dark_theme.png)
-(./public/screenshots/custom_theme.png)
 
+#### Move card
+![Move Card](./public/screenshots/move_card.png)
+
+#### Delete card
+![Delete Card](./public/screenshots/delete_card.png)
+
+#### Delete column
+![Delete Column](./public/screenshots/delete_column.png)
+
+#### Add card color tag (custom color)
+![Card color tag](./public/screenshots/card_color_tag.png)
+
+#### Dark theme
+![Dark Theme](./public/screenshots/dark_theme.png)
+
+#### Customize and create theme
+![Custom Theme](./public/screenshots/custom_theme.png)
 
 ---
 
@@ -27,6 +39,8 @@ A modern and interactive Kanban board built with React, featuring drag-and-drop 
 
 * 🖱️ Drag-and-drop task management across multiple columns
 * 📝 Add, edit, and delete tasks
+* 🚧 Custom WIP (Work In Progress) limits per column
+* ⚠️ Prevents adding/moving tasks when column limit is reached
 * 🌐 Global state management using Context API
 * ⚙️ Structured state logic with useReducer
 * 💾 Persistent state using localStorage (data saved across sessions)
