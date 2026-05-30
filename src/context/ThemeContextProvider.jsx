@@ -4,7 +4,7 @@ import themeReducer from "../reducers/themeReducer";
 import { applyThemeToCSS } from "../helper/applyThemeToCSS";
 
 const initialState = {
-  activeTheme: "defaultLight",
+  activeTheme: "lessDark",
 
   themes: {
     defaultLight: {
@@ -104,6 +104,66 @@ const initialState = {
         "--card-text-primary": "#e7ecee",
         "--card-text-secondary": "#8596ab",
         "--card-hr": "#2b3140",
+      },
+
+      effect: {
+        "--bg-menu-alpha": {
+          type: "alpha",
+          value: 0.5,
+        },
+        "--shadow-alpha": {
+          type: "alpha",
+          value: 0.4,
+        },
+        "--progress-bar-thickness": {
+          type: "thickness",
+          value: 1,
+        },
+        "--blur": {
+          type: "blur",
+          value: 5,
+        },
+      },
+    },
+
+    lessDark: {
+      isDefault: true,
+      color: {
+        /* -----------------------------Menu------------------------------- */
+        // "--bg-menu": "rgba(0, 0, 0, 0.5)",
+        "--menu-text-primary": "#e7ecee",
+        "--bg-menu-rgb": "#000000",
+
+        /* ----------------------------NavBar------------------------------- */
+        "--bg-navBar": "#0e0f12",
+        "--navBar-font-color": "#00ffbb",
+        "--navBar-menu-color": "#e7ecee",
+
+        /* -----------------------------main------------------------------- */
+        "--bg-main": "#232834",
+        "--main-font-color": "#e7ecee",
+        "--accent": "#00ffbb",
+        "--alert": "#ff3333",
+        "--border": "#2b3140",
+
+        /* -----------------------------Stage------------------------------ */
+        "--bg-stage": "#3b454e",
+        "--stage-btn-color": "#8596ab",
+
+        /* -----------------------------column----------------------------- */
+        "--bg-column": "#232834",
+        "--column-btn-color": "#8596ab",
+
+        /*Dynamic (--stage-color)*/
+        "--input": "#e86e30",
+        "--wip": "#1a8cff",
+        "--output": "#30e86e",
+
+        /* -----------------------------card------------------------------- */
+        "--bg-card": "#14171f",
+        "--card-text-primary": "#e7ecee",
+        "--card-text-secondary": "#8596ab",
+        "--card-hr": "#14171f",
       },
 
       effect: {
